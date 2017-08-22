@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>register</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -27,20 +27,34 @@
     </ion-item>
     <ion-item class="error-message" 
       *ngIf="!createForm.controls.password.valid  && createForm.controls.password.dirty">
-      <p>Your password needs more than 6 characters.</p>
+      <p>El password debe tener al menos 6 characters.</p>
     </ion-item>
     <ion-item>
       <ion-label floating>Nombre</ion-label>
-      <ion-input formControlName="nombre" type="nombre"></ion-input>
+      <ion-input formControlName="nombre" type="nombre"
+      [class.invalid]="!createForm.controls.nombre.valid && createForm.controls.nombre.dirty"></ion-input>
     </ion-item>
-    
+    <ion-item class="error-message" 
+      *ngIf="!createForm.controls.nombre.valid  && createForm.controls.nombre.dirty">
+      <p>El nombre no puede estar vacio</p>
+    </ion-item>
     <ion-item>
       <ion-label floating>Apellido</ion-label>
-      <ion-input formControlName="apellido" type="apellido"></ion-input>
+      <ion-input formControlName="apellido" type="apellido"
+      [class.invalid]="!createForm.controls.apellido.valid && createForm.controls.apellido.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" 
+      *ngIf="!createForm.controls.apellido.valid  && createForm.controls.apellido.dirty">
+      <p>El apellido no puede estar vacio</p>
     </ion-item>
     <ion-item>
       <ion-label floating>Matricula</ion-label>
-      <ion-input formControlName="matricula" type="matricula"></ion-input>
+      <ion-input formControlName="matricula" type="matricula"
+      [class.invalid]="!createForm.controls.matricula.valid && createForm.controls.matricula.dirty"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" 
+      *ngIf="!createForm.controls.matricula.valid  && createForm.controls.matricula.dirty">
+      <p>La matricula no puede estar vacia</p>
     </ion-item>
     <ion-item>
       <ion-label (click)="doCheckbox()">Especialidad</ion-label>
@@ -48,13 +62,14 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Cel</ion-label>
-      <ion-input formControlName="cel" type="cel"></ion-input>
+      <ion-input formControlName="cel" type="cel" type="number"
+      [class.invalid]="!createForm.controls.cel.valid && createForm.controls.cel.dirty"></ion-input>
     </ion-item>
-    <ion-item>
-      <ion-label floating>Otros</ion-label>
-      <ion-input formControlName="otros" type="otros"></ion-input>
+    <ion-item class="error-message" 
+      *ngIf="!createForm.controls.cel.valid  && createForm.controls.cel.dirty">
+      <p>El cel no puede estar vacio</p>
     </ion-item>
-    <button ion-button block type="submit" [disabled]="!createForm.valid">
+    <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
       Solicitar
     </button>
 

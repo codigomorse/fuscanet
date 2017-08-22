@@ -22,23 +22,23 @@ export class Register {
       email: [''],
       password: ['', Validators.compose([Validators.minLength(6), 
         Validators.required])],
-      nombre:[''],
-      apellido:[''],
-      matricula:[''],
+      nombre:['', Validators.compose([Validators.required])],
+      apellido:['', Validators.compose([Validators.required])],
+      matricula:['', Validators.compose([Validators.required])],
       especialidad:[''],
-      cel:[''],
-      otros:['']
+      cel:['', Validators.compose([Validators.minLength(9),Validators.required])],
     });
   }
 
   ionViewDidLoad() {
   }
   createUser(): void {
+
     alert('tu vieja');
   }
   doCheckbox() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Which planets have you visited?');
+    alert.setTitle('seleccione su especialidad');
 
     alert.addInput({
       type: 'checkbox',
@@ -98,7 +98,7 @@ export class Register {
     alert.addButton({
       text: 'Okay',
       handler: data => {
-        console.log('Checkbox data:', data);
+        //console.log('Checkbox data:', data);
         this.testCheckboxOpen = false;
         this.testCheckboxResult = data;
         this.especialidad = data;
