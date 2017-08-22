@@ -48,13 +48,13 @@
       <p>El apellido no puede estar vacio</p>
     </ion-item>
     <ion-item>
-      <ion-label floating>Matricula</ion-label>
-      <ion-input formControlName="matricula" type="matricula"
-      [class.invalid]="!createForm.controls.matricula.valid && createForm.controls.matricula.dirty"></ion-input>
+      <ion-label floating>Cedula</ion-label>
+      <ion-input formControlName="cedula" type="cedula" type="number"
+      [class.invalid]="!createForm.controls.cedula.valid && createForm.controls.cedula.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
-      *ngIf="!createForm.controls.matricula.valid  && createForm.controls.matricula.dirty">
-      <p>La matricula no puede estar vacia</p>
+      *ngIf="!createForm.controls.cedula.valid  && createForm.controls.cedula.dirty">
+      <p>La cedula no es correcta</p>
     </ion-item>
     <ion-item>
       <ion-label floating>Cel</ion-label>

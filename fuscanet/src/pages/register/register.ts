@@ -14,7 +14,6 @@ import { EmailValidator } from '../../validators/email';
 export class Register {
   testCheckboxOpen: boolean;
   testCheckboxResult;
-  especialidad;
   public createForm:FormGroup;
   public loading:Loading;
   constructor(private afAuth:AngularFireAuth,public formBuilder: FormBuilder,public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public loadingCtrl: LoadingController) {
@@ -24,9 +23,8 @@ export class Register {
         Validators.required])],
       nombre:['', Validators.compose([Validators.required])],
       apellido:['', Validators.compose([Validators.required])],
-      matricula:['', Validators.compose([Validators.required])],
-      especialidad:[''],
-      cel:['', Validators.compose([Validators.minLength(9),Validators.required])],
+      cedula:['', Validators.compose([Validators.minLength(8),Validators.maxLength(8),Validators.required])],
+      cel:['', Validators.compose([Validators.minLength(9),Validators.maxLength(9),Validators.required])],
     });
   }
 
