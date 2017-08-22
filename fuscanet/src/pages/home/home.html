@@ -1,14 +1,47 @@
+
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Inicio</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h2>Novedades</h2>
+  <ion-card>
+  <img src="https://s-media-cache-ak0.pinimg.com/736x/44/d4/57/44d45747b5b9bd755dc8159f8c55e40a.jpg"/>
+  <ion-card-content>
+    <ion-card-title>
+      Concurso de steampunk
+      </ion-card-title>
+    <p>
+      Vea las fotos de este evento.
+    </p>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <img src="http://fotos.miarroba.es/fo/4b35/2C5300C5AC2C52A786932B52A77DDA.jpg"/>
+  <ion-card-content>
+    <ion-card-title>
+      Domingo de carreras
+      </ion-card-title>
+    <p>
+      Enterese de que maquinas corren esta carrera.
+    </p>
+  </ion-card-content>
+</ion-card>
+<ion-card>
+  <img src="https://s-media-cache-ak0.pinimg.com/736x/55/ea/81/55ea8197b82ed818255d6bf53dc12444--vw-classic-vintage-cars.jpg"/>
+  <ion-card-content>
+    <ion-card-title>
+      La maquina del siglo
+      </ion-card-title>
+    <p>
+      Repasemos las ventajas que llevaron a este coche a ganarse su nombre.
+    </p>
+  </ion-card-content>
+</ion-card>
+    <button ion-button block (click)="logoutUser()">Log out</button> 
 </ion-content>
