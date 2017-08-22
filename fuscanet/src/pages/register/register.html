@@ -57,10 +57,6 @@
       <p>La matricula no puede estar vacia</p>
     </ion-item>
     <ion-item>
-      <ion-label (click)="doCheckbox()">Especialidad</ion-label>
-      <ion-label>{{especialidad}}</ion-label>
-    </ion-item>
-    <ion-item>
       <ion-label floating>Cel</ion-label>
       <ion-input formControlName="cel" type="cel" type="number"
       [class.invalid]="!createForm.controls.cel.valid && createForm.controls.cel.dirty"></ion-input>
