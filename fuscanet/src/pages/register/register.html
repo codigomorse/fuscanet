@@ -31,7 +31,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Nombre</ion-label>
-      <ion-input formControlName="nombre" type="nombre"
+      <ion-input formControlName="nombre" type="nombre" [(ngModel)]="profile.nombre"
       [class.invalid]="!createForm.controls.nombre.valid && createForm.controls.nombre.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
@@ -40,7 +40,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Apellido</ion-label>
-      <ion-input formControlName="apellido" type="apellido"
+      <ion-input formControlName="apellido" type="apellido" [(ngModel)]="profile.apellido"
       [class.invalid]="!createForm.controls.apellido.valid && createForm.controls.apellido.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
@@ -49,7 +49,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Cedula</ion-label>
-      <ion-input formControlName="cedula" type="cedula" type="number"
+      <ion-input formControlName="cedula" type="cedula" type="number" [(ngModel)]="profile.cedula"
       [class.invalid]="!createForm.controls.cedula.valid && createForm.controls.cedula.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
@@ -58,7 +58,7 @@
     </ion-item>
     <ion-item>
       <ion-label floating>Cel</ion-label>
-      <ion-input formControlName="cel" type="cel" type="number"
+      <ion-input formControlName="cel" type="cel" type="number" [(ngModel)]="profile.cel"
       [class.invalid]="!createForm.controls.cel.valid && createForm.controls.cel.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 

@@ -1,7 +1,6 @@
 export interface Profile{
-    stock: boolean;
-    farmacia: string;
-    latitud: string;
-    longitud: string;
-    horario: string;
+    nombre: "string";
+    apellido: "string";
+    cedula: "string";
+    cel: "string";
 }

@@ -5,7 +5,8 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from "../../models/user";
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
-
+import { Profile } from '../../models/profile';
+import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -13,10 +14,12 @@ import { EmailValidator } from '../../validators/email';
   templateUrl: 'register.html',
 })
 export class Register {
+  profileData: FirebaseObjectObservable<Profile>;
+  profile = {} as Profile;
   user = {} as User;
   public createForm:FormGroup;
   public loading:Loading;
-  constructor(private afAuth:AngularFireAuth,public formBuilder: FormBuilder,public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public loadingCtrl: LoadingController) {
+  constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public formBuilder: FormBuilder,public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public loadingCtrl: LoadingController) {
     this.createForm = formBuilder.group({
       email: [''],
       password: ['', Validators.compose([Validators.minLength(6), 
@@ -29,14 +32,17 @@ export class Register {
   }
 
   ionViewDidLoad() {
+    
   }
   createUser(): void {
     console.log(this.user);
+    console.log(this.profile);
     this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, 
         this.user.password)
     .then( authData => {
       this.loading.dismiss().then( () => {
-        alert("se creo esta mierda");
+        this.saveProfile();
+        //console.log(authData);
         this.afAuth.auth.signOut;
 
         //this.navCtrl.setRoot('Home');
@@ -57,5 +63,10 @@ export class Register {
     });
     this.loading = this.loadingCtrl.create();
     this.loading.present();
+  }
+  saveProfile(){
+    this.afAuth.authState.take(1).subscribe(auth => {
+        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert("Datos actualizados correctamente"));
+      })
   } 
 }
