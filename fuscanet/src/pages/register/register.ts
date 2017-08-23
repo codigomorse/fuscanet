@@ -6,14 +6,14 @@ import { User } from "../../models/user";
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 
+
 @IonicPage()
 @Component({
   selector: 'page-register',
   templateUrl: 'register.html',
 })
 export class Register {
-  testCheckboxOpen: boolean;
-  testCheckboxResult;
+  user = {} as User;
   public createForm:FormGroup;
   public loading:Loading;
   constructor(private afAuth:AngularFireAuth,public formBuilder: FormBuilder,public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public loadingCtrl: LoadingController) {
@@ -31,7 +31,31 @@ export class Register {
   ionViewDidLoad() {
   }
   createUser(): void {
+    console.log(this.user);
+    this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, 
+        this.user.password)
+    .then( authData => {
+      this.loading.dismiss().then( () => {
+        alert("se creo esta mierda");
+        this.afAuth.auth.signOut;
 
-    alert('tu vieja');
+        //this.navCtrl.setRoot('Home');
+      });
+    }, error => {
+      this.loading.dismiss().then( () => {
+        let alert = this.alertCtrl.create({
+          message: error.message,
+          buttons: [
+            {
+              text: "Ok",
+              role: 'cancel'
+            }
+          ]
+        });
+        alert.present();
+      });
+    });
+    this.loading = this.loadingCtrl.create();
+    this.loading.present();
   } 
 }

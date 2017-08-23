@@ -12,7 +12,7 @@
 
     <ion-item>
       <ion-label floating>Email</ion-label>
-      <ion-input formControlName="email" type="email" 
+      <ion-input formControlName="email" type="email" [(ngModel)]="user.email"
         [class.invalid]="!createForm.controls.email.valid && createForm.controls.email.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
@@ -22,7 +22,7 @@
 
     <ion-item>
       <ion-label floating>Password</ion-label>
-      <ion-input formControlName="password" type="password"
+      <ion-input formControlName="password" type="password"  [(ngModel)]="user.password"
         [class.invalid]="!createForm.controls.password.valid && createForm.controls.password.dirty"></ion-input>
     </ion-item>
     <ion-item class="error-message" 
