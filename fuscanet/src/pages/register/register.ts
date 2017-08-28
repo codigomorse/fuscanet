@@ -45,7 +45,7 @@ export class Register {
         //console.log(authData);
         this.afAuth.auth.signOut;
 
-        //this.navCtrl.setRoot('Home');
+        this.navCtrl.pop();
       });
     }, error => {
       this.loading.dismiss().then( () => {
@@ -66,7 +66,7 @@ export class Register {
   }
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
-        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert("Datos actualizados correctamente"));
+        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert("El usuario fue enviado a procesar correctamente"));
       })
   } 
 }
