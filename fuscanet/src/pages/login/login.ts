@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { User } from "../../models/user";
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
+import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,8 +22,9 @@ export class LoginPage {
 user = {} as User;
   public loginForm:FormGroup;
   public loading:Loading;
+  role = {};
 
-  constructor(public loadingCtrl: LoadingController,public formBuilder: FormBuilder,public alertCtrl: AlertController, private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private afDb: AngularFireDatabase,public loadingCtrl: LoadingController,public formBuilder: FormBuilder,public alertCtrl: AlertController, private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.loginForm = formBuilder.group({
       email: [''],
       password: ['', Validators.compose([Validators.minLength(6), 
@@ -34,9 +36,18 @@ user = {} as User;
     const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
         if (!user) {
           unsubscribe();
-        } else { 
-          this.navCtrl.setRoot('Home');
-          console.log("ya estoy logeado");
+        } else {
+          this.afDb.object(`/role/${user.uid}`).subscribe(_data => {
+          this.role = _data.value;
+          //console.log(this.role);
+          if(this.role){
+            this.navCtrl.setRoot('Home');  
+          }else{
+            alert("Su usuario se encuentra pendiente de aprobacion");
+          }
+        });  
+          //this.navCtrl.setRoot('Home');
+          //console.log("ya estoy logeado");
           unsubscribe();
         }
       });
@@ -77,14 +88,23 @@ user = {} as User;
   }
   loginUser(): void {
   if (!this.loginForm.valid){
-    console.log(this.loginForm.value);
+    //console.log(this.loginForm.value);
   } else {
     this.afAuth.auth.signInWithEmailAndPassword(this.loginForm.value.email, 
         this.loginForm.value.password)
     .then( authData => {
       this.loading.dismiss().then( () => {
-        console.log("se logueo bien");
-        this.navCtrl.setRoot('Home');
+        //console.log(authData);
+        //console.log("se logueo bien");
+        this.afDb.object(`/role/${authData.uid}`).subscribe(_data => {
+          this.role = _data.value;
+          //console.log(this.role);
+          if(this.role){
+            this.navCtrl.setRoot('Home');  
+          }else{
+            alert("El usuario se encuentra pendiente de aprobacion");
+          }
+        });  
       });
     }, error => {
       this.loading.dismiss().then( () => {
