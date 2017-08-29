@@ -36,6 +36,8 @@ export class Register {
   }
   createUser(): void {
     console.log(this.user);
+    this.profile.correo = this.user.email;
+    this.profile.perfil = "nuevo";
     console.log(this.profile);
     this.afAuth.auth.createUserWithEmailAndPassword(this.user.email, 
         this.user.password)
@@ -66,6 +68,7 @@ export class Register {
   }
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
+      console.log(this.profile);
         this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert("El usuario fue enviado a procesar correctamente"));
       })
   } 

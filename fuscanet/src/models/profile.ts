@@ -1,6 +1,8 @@
 export interface Profile{
-    nombre: "string";
-    apellido: "string";
-    cedula: "string";
-    cel: "string";
+    nombre: String;
+    apellido: String;
+    cedula: Number;
+    cel: Number;
+    correo: String;
+    perfil: String;
 }

@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
+import { Profile } from '../../models/profile';
 
 /**
  * Generated class for the LoginPage page.
@@ -22,7 +23,7 @@ export class LoginPage {
 user = {} as User;
   public loginForm:FormGroup;
   public loading:Loading;
-  role = {};
+  profile = {} as Profile;
 
   constructor(private afDb: AngularFireDatabase,public loadingCtrl: LoadingController,public formBuilder: FormBuilder,public alertCtrl: AlertController, private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.loginForm = formBuilder.group({
@@ -37,13 +38,15 @@ user = {} as User;
         if (!user) {
           unsubscribe();
         } else {
-          this.afDb.object(`/role/${user.uid}`).subscribe(_data => {
-          this.role = _data.value;
-          //console.log(this.role);
-          if(this.role){
-            this.navCtrl.setRoot('Home');  
-          }else{
-            alert("Su usuario se encuentra pendiente de aprobacion");
+          this.afDb.object(`/profile/${user.uid}`).subscribe(_data => {
+          this.profile = _data;
+          //console.log(this.profile);
+          if(this.profile){
+            if(this.profile.perfil=="nuevo"){
+              alert("Su usuario se encuentra pendiente de aprobacion");
+            }else{
+              this.navCtrl.setRoot('Home');  
+            }
           }
         });  
           //this.navCtrl.setRoot('Home');
@@ -96,13 +99,16 @@ user = {} as User;
       this.loading.dismiss().then( () => {
         //console.log(authData);
         //console.log("se logueo bien");
-        this.afDb.object(`/role/${authData.uid}`).subscribe(_data => {
-          this.role = _data.value;
-          //console.log(this.role);
-          if(this.role){
-            this.navCtrl.setRoot('Home');  
-          }else{
-            alert("El usuario se encuentra pendiente de aprobacion");
+        this.afDb.object(`/profile/${authData.uid}`).subscribe(_data => {
+          //console.log(_data);
+          this.profile = _data;
+          //console.log(this.profile);
+          if(this.profile){
+            if(this.profile.perfil=="nuevo"){
+              alert("Su usuario se encuentra pendiente de aprobacion");
+            }else{
+              this.navCtrl.setRoot('Home');  
+            }
           }
         });  
       });
