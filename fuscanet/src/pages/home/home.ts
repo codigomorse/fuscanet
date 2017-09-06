@@ -21,10 +21,10 @@ export class Home {
   ionViewDidLoad() {
     this.afAuth.authState.subscribe(data => {
       this.user = data;
-      console.log(this.user);  
+      //console.log(this.user);  
       this.afDb.object(`/profile/${data.uid}`).subscribe(_data => {
           this.profile = _data;
-          console.log(this.profile);
+          //console.log(this.profile);
       });  
      });
   }

@@ -1,0 +1,19 @@
+
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-item>
+      <h2>Nombre: {{profile.nombre}} {{profile.apellido}}</h2>
+      <h2>Cedula: {{profile.cedula}}</h2>
+      <h3>Mail: {{profile.correo}}</h3>
+      <h3>Cel: {{profile.cel}}</h3>
+      <h3>Perfil: {{profile.perfil}}</h3>
+    </ion-item>
+</ion-content>

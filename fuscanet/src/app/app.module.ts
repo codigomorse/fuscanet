@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { Catalogo } from '../pages/catalogo/catalogo';
+import { User } from '../pages/user/user';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -20,7 +21,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     MyApp,
     LoginPage,
     ListPage,
-    Catalogo
+    Catalogo,
+    User
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     MyApp,
     LoginPage,
     ListPage,
-    Catalogo
+    Catalogo,
+    User
   ],
   providers: [
     StatusBar,
