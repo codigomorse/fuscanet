@@ -27,7 +27,7 @@ export class MyApp {
     this.pages = [
       { title: 'Inicio', component: Home },
       { title: 'Perfil', component: User },
-      { title: 'Eventos', component: ListPage },
+      { title: 'Calendario', component: ListPage },
       { title: 'Catalogo', component: Catalogo },
     ];
 

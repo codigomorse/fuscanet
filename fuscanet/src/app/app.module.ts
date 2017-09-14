@@ -14,7 +14,7 @@ import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import {NgCalendarModule} from 'ionic2-calendar';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    NgCalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

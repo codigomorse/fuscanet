@@ -9,39 +9,42 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Novedades</h2>
+  <h2>Noticias</h2>
+  <ion-card (click)="goNoticia()">
+    <img src="http://i1.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/3_127.jpg"/>
+    <ion-card-content>
+      <ion-card-title class="titulo">
+        El dispositivo que identifica, en segundos, tejido canceroso durante una cirugía
+      </ion-card-title>
+      <p class="fecha">13 de septiembre, 2017</p>
+      <p class="resumen">
+        Tiene forma de bolígrafo y es desechable. El denominado MasSpec Pen ha sido desarrollado por un equipo de la Universidad de Texas y se empezará
+      </p>
+    </ion-card-content>
+  </ion-card>
   <ion-card>
-  <img src="https://s-media-cache-ak0.pinimg.com/736x/44/d4/57/44d45747b5b9bd755dc8159f8c55e40a.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      Concurso de steampunk
+    <img src="http://i1.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/000_of2m0_0.jpg"/>
+    <ion-card-content>
+      <ion-card-title class="titulo">
+        OMS eleva a 2.065 muertes por cólera en Yemen y a 646.000 los casos
       </ion-card-title>
-    <p>
-      Vea las fotos de este evento.
-    </p>
-  </ion-card-content>
-</ion-card>
-<ion-card>
-  <img src="http://fotos.miarroba.es/fo/4b35/2C5300C5AC2C52A786932B52A77DDA.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      Domingo de carreras
+      <p class="fecha">13 de septiembre, 2017</p>
+      <p class="resumen">
+        El organismo calificó de difícil responder al brote actual ante el conflicto en el país, donde unos 15 millones de yemeníes no tienen acceso a
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <img src="http://i0.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/que-sabes-vitamina-a-art.jpg"/>
+    <ion-card-content>
+      <ion-card-title class="titulo">
+        ¿Qué sabes sobre la vitamina A?
       </ion-card-title>
-    <p>
-      Enterese de que maquinas corren esta carrera.
-    </p>
-  </ion-card-content>
-</ion-card>
-<ion-card>
-  <img src="https://s-media-cache-ak0.pinimg.com/736x/55/ea/81/55ea8197b82ed818255d6bf53dc12444--vw-classic-vintage-cars.jpg"/>
-  <ion-card-content>
-    <ion-card-title>
-      La maquina del siglo
-      </ion-card-title>
-    <p>
-      Repasemos las ventajas que llevaron a este coche a ganarse su nombre.
-    </p>
-  </ion-card-content>
-</ion-card>
-    <button ion-button block (click)="logoutUser()">Log out</button> 
+      <p class="fecha">12 de septiembre, 2017</p>
+      <p class="resumen">
+        La vitamina A puede resultar tóxica en dosis elevadas, que se alcanzan por la ingesta excesiva de suplementos, no por la alimentación.
+      </p>
+    </ion-card-content>
+  </ion-card>  
+ <!-- <button ion-button block (click)="logoutUser()">Log out</button> -->
 </ion-content>

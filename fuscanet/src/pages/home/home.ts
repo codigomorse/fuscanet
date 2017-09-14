@@ -46,4 +46,7 @@ export class Home {
     firebase.auth().signOut();
     this.platform.exitApp();
   }
+  goNoticia(){
+    console.log("click");
+  }
 }
