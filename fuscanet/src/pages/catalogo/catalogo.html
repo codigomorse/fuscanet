@@ -8,5 +8,9 @@
 </ion-header>
 
 <ion-content >
-    
+    <ion-list>
+      <ion-item *ngFor="let product of productos$ | async">
+    		<h3>{{product.$key}}</h3>
+			</ion-item>
+    </ion-list>
 </ion-content>
