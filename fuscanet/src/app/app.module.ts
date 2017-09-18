@@ -15,6 +15,7 @@ import {FIREBASE_CONFIG} from './app.firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {NgCalendarModule} from 'ionic2-calendar';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {NgCalendarModule} from 'ionic2-calendar';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    NgCalendarModule
+    NgCalendarModule,
+    InfiniteScrollModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

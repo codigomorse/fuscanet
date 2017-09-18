@@ -8,9 +8,17 @@
 </ion-header>
 
 <ion-content >
-    <ion-list>
-      <ion-item *ngFor="let product of productos$ | async">
-    		<h3>{{product.$key}}</h3>
-			</ion-item>
-    </ion-list>
+  <h2>Buscar por nombre de producto</h2>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let product of items | slice:0:10; let i=index">
+    	<h3 *ngIf="i<11">{{product.$key}}</h3>
+		</ion-item>
+  </ion-list>
+  <div
+    infiniteScroll
+    [infiniteScrollDistance]="2"
+    [infiniteScrollThrottle]="1000"
+    (scrolled)="onScroll()">
+  </div> 
 </ion-content>
