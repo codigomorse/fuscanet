@@ -5,4 +5,8 @@ export interface Profile{
     cel: Number;
     correo: String;
     perfil: String;
+    genero: String;
+    especialidad: String;
+    ciudad: String;
+    sociedad: String;
 }

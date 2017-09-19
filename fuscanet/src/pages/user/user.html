@@ -9,11 +9,72 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-item>
-      <h2>Nombre: {{profile.nombre}} {{profile.apellido}}</h2>
-      <h2>Cedula: {{profile.cedula}}</h2>
-      <h3>Mail: {{profile.correo}}</h3>
-      <h3>Cel: {{profile.cel}}</h3>
-      <h3>Perfil: {{profile.perfil}}</h3>
-    </ion-item>
+    <h2>Hola: {{profile.nombre}} {{profile.apellido}}</h2>
+    <form [formGroup]="createForm" (submit)="updateUser()" novalidate>
+      <ion-item>
+          <img src="assets/img/default.png" />
+      </ion-item>
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input formControlName="email" type="email" [(ngModel)]="profile.correo"></ion-input>
+        </ion-item>  
+            <ion-item>
+            <ion-label floating>Cel</ion-label>
+            <ion-input formControlName="cel" type="cel" type="number" [(ngModel)]="profile.cel"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label>Especialidad</ion-label>
+                  <ion-select [(ngModel)]="profile.especialidad" formControlName="especialidad" multiple="true">
+                    <ion-option>1</ion-option>
+                    <ion-option>2</ion-option>
+                    <ion-option>3</ion-option>
+                    <ion-option>4</ion-option>
+                    <ion-option>5</ion-option>
+                  </ion-select>
+            </ion-item>            
+              <ion-item>
+                  <ion-label >Departamento</ion-label>
+                  <ion-select multiple="true" formControlName="city" [(ngModel)]="profile.city">
+                    <ion-option>Artigas</ion-option>
+                    <ion-option>Canelones</ion-option>
+                    <ion-option>Cerro Largo</ion-option>
+                    <ion-option>Colonia</ion-option>
+                    <ion-option>Durazno</ion-option>
+                    <ion-option>Flores</ion-option>
+                    <ion-option>Florida</ion-option>
+                    <ion-option>Lavalleja</ion-option>
+                    <ion-option>Maldonado</ion-option>
+                    <ion-option>Montevideo</ion-option>
+                    <ion-option>Paysandú</ion-option>
+                    <ion-option>Río Negro</ion-option>
+                    <ion-option>Rivera</ion-option>
+                    <ion-option>Rocha</ion-option>
+                    <ion-option>Salto</ion-option>
+                    <ion-option>San José</ion-option>
+                    <ion-option>Soriano</ion-option>
+                    <ion-option>Tacuarembó</ion-option>
+                    <ion-option>Treinta y Tres</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Sociedad</ion-label>
+                    <ion-select formControlName="sociedad" multiple="true" [(ngModel)]="profile.sociedad">
+                      <ion-option >algo</ion-option>
+                      <ion-option >algo 1</ion-option>
+                      <ion-option >algo 2</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                      <ion-label>Genero</ion-label>
+                      <ion-select formControlName="gender" [(ngModel)]="profile.genero">
+                          <ion-option value="m">Dr</ion-option>
+                        <ion-option value="f">Dra</ion-option>
+                      </ion-select>
+                    </ion-item>      
+            <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
+              Guardar
+            </button>
+        
+          </form>
+        
 </ion-content>
