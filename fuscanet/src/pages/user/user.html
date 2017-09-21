@@ -4,15 +4,14 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Perfil</ion-title>
+    <ion-title>Perfil {{profile.nombre}} {{profile.apellido}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <h2>Hola: {{profile.nombre}} {{profile.apellido}}</h2>
     <form [formGroup]="createForm" (submit)="updateUser()" novalidate>
       <ion-item>
-          <img src="assets/img/default.png" />
+          <img [src]="image" id="image" (click)="updatePhoto()" />
       </ion-item>
         <ion-item>
             <ion-label floating>Email</ion-label>

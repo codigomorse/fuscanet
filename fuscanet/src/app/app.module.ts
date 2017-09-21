@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {NgCalendarModule} from 'ionic2-calendar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

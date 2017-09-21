@@ -9,4 +9,5 @@ export interface Profile{
     especialidad: String;
     ciudad: String;
     sociedad: String;
+    foto: string;
 }

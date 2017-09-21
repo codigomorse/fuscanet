@@ -3,6 +3,6 @@ export const FIREBASE_CONFIG = {
     authDomain: "redclinica-9e4da.firebaseapp.com",
     databaseURL: "https://redclinica-9e4da.firebaseio.com",
     projectId: "redclinica-9e4da",
-    storageBucket: "",
+    storageBucket: "gs://redclinica-9e4da.appspot.com/",
     messagingSenderId: "761902724197"
   };
