@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Product } from '../../models/product';
+import { Itemdetails } from '../itemdetails/itemdetails';
 
 @Component({
   selector: 'page-catalogo',
@@ -14,7 +15,7 @@ export class Catalogo {
   origProd:any;
   productos$: FirebaseListObservable<Product[]>;
 
-  constructor(public alertCtrl: AlertController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.afAuth.authState.subscribe(data => {
       this.user = data;
       //console.log(this.user);  
@@ -39,6 +40,12 @@ export class Catalogo {
         return (item.$key.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
+  }
+  productClick(product){
+    let modal = this.modalCtrl.create(Itemdetails, product);
+    //modal.onDidDismiss((data) => {console.log(data)});
+    modal.present();
+    
   }
 
 }
