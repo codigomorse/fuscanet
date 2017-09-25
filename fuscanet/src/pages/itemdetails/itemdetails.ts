@@ -12,18 +12,15 @@ export class Itemdetails {
   titulo;
   datos;
   constructor(public navCtrl: NavController,public viewCtrl:ViewController, public navParams: NavParams) {
+    this.product=this.navParams.get('product');
+    console.log(this.product);
+    this.titulo=this.product.$key;
   }
 
-  ionViewDidLoad() {
-    this.product=this.navParams.data;
-    this.titulo=this.product.$key;
-    console.log(this.product);
-  }
   closeModal(){
     this.viewCtrl.dismiss();
   }
   keys() : Array<string> {
-    console.log(this.product);
     return Object.keys(this.product);
   }
   

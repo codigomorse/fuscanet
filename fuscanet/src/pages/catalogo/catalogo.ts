@@ -42,7 +42,7 @@ export class Catalogo {
     }
   }
   productClick(product){
-    let modal = this.modalCtrl.create(Itemdetails, product);
+    let modal = this.modalCtrl.create(Itemdetails,  {'product': product});
     //modal.onDidDismiss((data) => {console.log(data)});
     modal.present();
     
