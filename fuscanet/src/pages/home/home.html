@@ -9,7 +9,35 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Noticias</h2>
+  <h2>Noticias y eventos</h2>
+  <ion-card>
+    <img src="http://www.ui.psico.edu.uy/ftp/Psicologia-logo.svg"/>
+    <ion-card-content>
+      <ion-card-title class="titulo">
+        VII CONGRESO REGIONAL de la
+        SOCIEDAD URUGUAYA de PSICOLOGÍA MÉDICA
+      </ion-card-title>
+      <p class="fecha">28, 29 y 30 de setiembre de 2017</p>
+      <p class="resumen">
+        Hotel NH Columbia
+        Rambla Gran Bretaña 473
+      </p>
+      <ion-row padding>
+        <ion-col>
+          <button ion-button clear small color="primary" icon-start (click)="goNoticia()">
+            <ion-icon name='ios-information-circle'></ion-icon>
+            Detalles
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="primary" (click)="asistir()" icon-start>
+            <ion-icon name='md-calendar'></ion-icon>
+            Asisitir
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
   <ion-card (click)="goNoticia()">
     <img src="http://i1.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/3_127.jpg"/>
     <ion-card-content>
@@ -37,6 +65,32 @@
           <button ion-button clear small color="primary" icon-start>
             <ion-icon name='ios-heart'></ion-icon>
             Like
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+  <ion-card (click)="goNoticia()">
+    <img src="http://www.movementdisorders.org/MDS-Files1/Education/Images/2017-Courses/RareMDCourseUruguay2017.jpg?Large"/>
+    <ion-card-content>
+      <ion-card-title class="titulo">
+        Curso internacional del Parkinson and Movement Disorder Society
+      </ion-card-title>
+      <p class="fecha">14 de septiembre</p>
+      <p class="resumen">
+        Los próximos 29 y 30 de setiembre en el Sindicato Médico del Uruguay se llevará a cabo el curso internacional “An Introduction to Rare Movement Disorders Diseases“,
+      </p>
+      <ion-row padding>
+        <ion-col>
+          <button ion-button clear small color="primary" icon-start>
+            <ion-icon name='ios-information-circle'></ion-icon>
+            Detalles
+          </button>
+        </ion-col>
+        <ion-col>
+          <button ion-button clear small color="primary" icon-start>
+            <ion-icon name='md-calendar'></ion-icon>
+            Asisitir
           </button>
         </ion-col>
       </ion-row>

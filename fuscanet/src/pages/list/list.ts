@@ -24,7 +24,7 @@ export class ListPage {
   }
   onTimeSelected(ev){
     this.selectedDate = ev.selectedTime;
-    console.log(ev.selectedTime);
+    //console.log(ev.selectedTime);
   }
   onEventSelected(event){
     let start = moment(event.startTime).format('LLLL');
@@ -41,6 +41,7 @@ export class ListPage {
     modal.present();
     modal.onDidDismiss(data => {
       if (data) {
+        console.log(data);
         let eventData = data;
  
         eventData.startTime = new Date(data.startTime);

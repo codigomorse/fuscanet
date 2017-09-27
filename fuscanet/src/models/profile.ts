@@ -10,4 +10,6 @@ export interface Profile{
     ciudad: String;
     sociedad: String;
     foto: string;
+    gremio: string;
+    colegios: string;
 }

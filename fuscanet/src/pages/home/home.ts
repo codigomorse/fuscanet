@@ -49,4 +49,13 @@ export class Home {
   goNoticia(){
     console.log("click");
   }
+  asistir(){
+    console.log("click añadir");
+    let event= {startTime: "2017-09-27T12:35:50-03:00", endTime: "2017-09-27T12:35:50-03:00", allDay: false, title: "evento 1"};
+    //console.log(event);
+    //console.log(event.title);
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`events/${event.title}`).set(event).then(() => alert("Fue confirmada tu asistencia"));
+    })
+  }
 }

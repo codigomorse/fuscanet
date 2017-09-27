@@ -38,7 +38,9 @@ export class User {
       especialidad: [''],
       city: [''],
       sociedad: [''],
-      gender: ['']
+      gender: [''],
+      gremio: [''],
+      colegios: ['']
     });
   }
 

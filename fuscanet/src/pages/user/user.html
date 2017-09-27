@@ -32,8 +32,9 @@
                   </ion-select>
             </ion-item>            
               <ion-item>
-                  <ion-label >Departamento</ion-label>
+                  <ion-label >Ejerce en</ion-label>
                   <ion-select multiple="true" formControlName="city" [(ngModel)]="profile.city">
+                    <ion-option>Montevideo</ion-option>
                     <ion-option>Artigas</ion-option>
                     <ion-option>Canelones</ion-option>
                     <ion-option>Cerro Largo</ion-option>
@@ -43,7 +44,6 @@
                     <ion-option>Florida</ion-option>
                     <ion-option>Lavalleja</ion-option>
                     <ion-option>Maldonado</ion-option>
-                    <ion-option>Montevideo</ion-option>
                     <ion-option>Paysandú</ion-option>
                     <ion-option>Río Negro</ion-option>
                     <ion-option>Rivera</ion-option>
@@ -56,11 +56,30 @@
                   </ion-select>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Sociedad</ion-label>
+                    <ion-label>Sociedad científica
+                    </ion-label>
                     <ion-select formControlName="sociedad" multiple="true" [(ngModel)]="profile.sociedad">
                       <ion-option >algo</ion-option>
                       <ion-option >algo 1</ion-option>
                       <ion-option >algo 2</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Gremio
+                    </ion-label>
+                    <ion-select formControlName="gremio" multiple="true" [(ngModel)]="profile.gremio">
+                      <ion-option >gremio 1</ion-option>
+                      <ion-option >gremio 2</ion-option>
+                      <ion-option >gremio 3</ion-option>
+                    </ion-select>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Colegios
+                    </ion-label>
+                    <ion-select formControlName="colegios" multiple="true" [(ngModel)]="profile.colegios">
+                      <ion-option >colegio 1</ion-option>
+                      <ion-option >colegio 2</ion-option>
+                      <ion-option >colegio 3</ion-option>
                     </ion-select>
                   </ion-item>
                   <ion-item>
