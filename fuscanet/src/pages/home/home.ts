@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController,Platform } from 'i
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
-import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable  } from 'angularfire2/database';
 
 @IonicPage()
 @Component({
@@ -14,6 +14,7 @@ export class Home {
 
   profileData: FirebaseObjectObservable<Profile>;
   user={};
+  events: FirebaseListObservable<Profile[]>;;
   profile = {} as Profile;
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -25,7 +26,12 @@ export class Home {
       this.afDb.object(`/profile/${data.uid}`).subscribe(_data => {
           this.profile = _data;
           //console.log(this.profile);
-      });  
+      });
+      this.afDb.object(`/events/${data.uid}`).subscribe(_data => {
+        this.events = this.afDb.list('events');
+        this.events.subscribe(data => console.log(data));
+        
+    });
      });
   }
   logoutUser(){

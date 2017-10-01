@@ -10,155 +10,33 @@
 
 <ion-content padding>
   <h2>Noticias y eventos</h2>
-  <ion-card>
-    <img src="http://www.ui.psico.edu.uy/ftp/Psicologia-logo.svg"/>
-    <ion-card-content>
-      <ion-card-title class="titulo">
-        VII CONGRESO REGIONAL de la
-        SOCIEDAD URUGUAYA de PSICOLOGÍA MÉDICA
-      </ion-card-title>
-      <p class="fecha">28, 29 y 30 de setiembre de 2017</p>
-      <p class="resumen">
-        Hotel NH Columbia
-        Rambla Gran Bretaña 473
-      </p>
-      <ion-row padding>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start (click)="goNoticia()">
-            <ion-icon name='ios-information-circle'></ion-icon>
-            Detalles
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" (click)="asistir()" icon-start>
-            <ion-icon name='md-calendar'></ion-icon>
-            Asisitir
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-  <ion-card (click)="goNoticia()">
-    <img src="http://i1.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/3_127.jpg"/>
-    <ion-card-content>
-      <ion-card-title class="titulo">
-        El dispositivo que identifica, en segundos, tejido canceroso durante una cirugía
-      </ion-card-title>
-      <p class="fecha">13 de septiembre, 2017</p>
-      <p class="resumen">
-        Tiene forma de bolígrafo y es desechable. El denominado MasSpec Pen ha sido desarrollado por un equipo de la Universidad de Texas y se empezará
-      </p>
-      <ion-row padding>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-information-circle'></ion-icon>
-            Detalles
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='md-archive'></ion-icon>
-            Guardar
-          </button>
-        </ion-col>
-        <ion-col >
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-heart'></ion-icon>
-            Like
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-  <ion-card (click)="goNoticia()">
-    <img src="http://www.movementdisorders.org/MDS-Files1/Education/Images/2017-Courses/RareMDCourseUruguay2017.jpg?Large"/>
-    <ion-card-content>
-      <ion-card-title class="titulo">
-        Curso internacional del Parkinson and Movement Disorder Society
-      </ion-card-title>
-      <p class="fecha">14 de septiembre</p>
-      <p class="resumen">
-        Los próximos 29 y 30 de setiembre en el Sindicato Médico del Uruguay se llevará a cabo el curso internacional “An Introduction to Rare Movement Disorders Diseases“,
-      </p>
-      <ion-row padding>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-information-circle'></ion-icon>
-            Detalles
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='md-calendar'></ion-icon>
-            Asisitir
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="http://i1.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/000_of2m0_0.jpg"/>
-    <ion-card-content>
-      <ion-card-title class="titulo">
-        OMS eleva a 2.065 muertes por cólera en Yemen y a 646.000 los casos
-      </ion-card-title>
-      <p class="fecha">13 de septiembre, 2017</p>
-      <p class="resumen">
-        El organismo calificó de difícil responder al brote actual ante el conflicto en el país, donde unos 15 millones de yemeníes no tienen acceso a
-      </p>
-      <ion-row padding>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-information-circle'></ion-icon>
-            Detalles
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='md-archive'></ion-icon>
-            Guardar
-          </button>
-        </ion-col>
-        <ion-col >
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-heart'></ion-icon>
-            Like
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
-  <ion-card>
-    <img src="http://i0.wp.com/consultordesalud.com.uy/wp-content/uploads/2017/09/que-sabes-vitamina-a-art.jpg"/>
-    <ion-card-content>
-      <ion-card-title class="titulo">
-        ¿Qué sabes sobre la vitamina A?
-      </ion-card-title>
-      <p class="fecha">12 de septiembre, 2017</p>
-      <p class="resumen">
-        La vitamina A puede resultar tóxica en dosis elevadas, que se alcanzan por la ingesta excesiva de suplementos, no por la alimentación.
-      </p>
-      <ion-row padding>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-information-circle'></ion-icon>
-            Detalles
-          </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='md-archive'></ion-icon>
-            Guardar
-          </button>
-        </ion-col>
-        <ion-col >
-          <button ion-button clear small color="primary" icon-start>
-            <ion-icon name='ios-heart'></ion-icon>
-            Like
-          </button>
-        </ion-col>
-      </ion-row>
-    </ion-card-content>
-  </ion-card>  
- <button ion-button block (click)="logoutUser()">Log out</button>
+  <ion-list>
+      <ion-card *ngFor="let event of events | async " >
+          <img src={{event.foto}}/>
+          <ion-card-content>
+            <ion-card-title class="titulo">
+              {{event.title}}
+            </ion-card-title>
+            <p class="fecha">{{event.startTime}}</p>
+            <p class="resumen">
+              {{event.texto}}
+            </p>
+            <ion-row padding>
+              <ion-col>
+                <button ion-button clear small color="primary" icon-start (click)="goNoticia()">
+                  <ion-icon name='ios-information-circle'></ion-icon>
+                  Detalles
+                </button>
+              </ion-col>
+              <ion-col>
+                <button ion-button clear small color="primary" (click)="asistir()" icon-start>
+                  <ion-icon name='md-calendar'></ion-icon>
+                  Asisitir
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+  </ion-list>
+ <!--<button ion-button block (click)="logoutUser()">Log out</button>-->
 </ion-content>
