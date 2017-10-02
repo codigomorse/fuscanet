@@ -14,7 +14,7 @@ export class Home {
 
   profileData: FirebaseObjectObservable<Profile>;
   user={};
-  events: FirebaseListObservable<Profile[]>;;
+  events: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -29,7 +29,7 @@ export class Home {
       });
       this.afDb.object(`/events/${data.uid}`).subscribe(_data => {
         this.events = this.afDb.list('events');
-        this.events.subscribe(data => console.log(data));
+        //this.events.subscribe(data => console.log(data));
         
     });
      });
