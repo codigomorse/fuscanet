@@ -65,16 +65,16 @@ export class ListPage {
         eventData.startTime = new Date(data.startTime);
         eventData.endTime = new Date(data.endTime);
         
-        console.log('este es el evento');
-        console.log(eventData);
+        //console.log('este es el evento');
+        //console.log(eventData);
         let events = this.eventSource;
         events.push(eventData);
         this.eventSource = [];
         setTimeout(() => {
           this.eventSource = events;
           this.afAuth.authState.take(1).subscribe(auth => {
-            console.log('estos son todos los eventos');
-            console.log(events);
+            //console.log('estos son todos los eventos');
+            //console.log(events);
               this.afDb.object(`eventlist/${auth.uid}`).update(events).then(() => alert("El evento se agrego correctamente"));
             })
         });

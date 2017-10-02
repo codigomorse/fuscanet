@@ -14,6 +14,7 @@ export class Home {
 
   profileData: FirebaseObjectObservable<Profile>;
   user={};
+  eventSource=[];
   events: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
@@ -29,9 +30,19 @@ export class Home {
       });
       this.afDb.object(`/events/${data.uid}`).subscribe(_data => {
         this.events = this.afDb.list('events');
-        //this.events.subscribe(data => console.log(data));
-        
-    });
+        //this.events.subscribe(data => console.log(data));  
+      });
+      this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
+        //console.log("esto hay");  
+        //console.log(_data);
+        _data.forEach(element => {
+          //console.log(element);
+          element.startTime = new Date(element.startTime);
+          element.endTime = new Date(element.endTime);
+        });
+        //console.log(_data[0].startTime);
+        this.eventSource = _data;  
+      });  
      });
   }
   logoutUser(){
@@ -55,13 +66,14 @@ export class Home {
   goNoticia(){
     console.log("click");
   }
-  asistir(){
+  asistir(event){
     console.log("click añadir");
-    let event= {startTime: "2017-09-27T12:35:50-03:00", endTime: "2017-09-27T12:35:50-03:00", allDay: false, title: "evento 1"};
-    //console.log(event);
-    //console.log(event.title);
+    console.log(event);
+    console.log(this.eventSource);
+    this.eventSource.push(event);
+    console.log(this.eventSource);
     this.afAuth.authState.take(1).subscribe(auth => {
-      this.afDb.object(`events/${event.title}`).set(event).then(() => alert("Fue confirmada tu asistencia"));
+      this.afDb.object(`eventlist/${auth.uid}`).update(this.eventSource).then(() => alert("El evento se agrego correctamente"));
     })
   }
 }
