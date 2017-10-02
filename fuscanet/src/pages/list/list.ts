@@ -20,7 +20,22 @@ export class ListPage {
   }
 
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController) {
-    
+    this.afAuth.authState.subscribe(data => {
+      this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
+        console.log("esto hay");  
+        console.log(_data);
+        _data.forEach(element => {
+          //console.log(element);
+          element.startTime = new Date(element.startTime);
+          element.endTime = new Date(element.endTime);
+        });
+        //console.log(_data[0].startTime);
+        this.eventSource = _data;  
+      });  
+     });
+  }
+  ionViewDidLoad() {
+
   }
   onViewTitleChanged(title){
     this.viewTitle = title;
