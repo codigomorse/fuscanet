@@ -16,6 +16,7 @@ export class Home {
   user={};
   eventSource=[];
   events: FirebaseListObservable<Profile[]>;
+  noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -31,6 +32,10 @@ export class Home {
       this.afDb.object(`/events/${data.uid}`).subscribe(_data => {
         this.events = this.afDb.list('events');
         //this.events.subscribe(data => console.log(data));  
+      });
+      this.afDb.object(`/noticia`).subscribe(_data => {
+        this.noticias = this.afDb.list('noticia');
+        this.noticias.subscribe(data => console.log(data));  
       });
       this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
         //console.log("esto hay");  

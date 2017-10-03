@@ -38,5 +38,33 @@
           </ion-card-content>
         </ion-card>
   </ion-list>
+  <ion-list>
+    <ion-card *ngFor="let noticia of noticias | async " >
+        <img src={{noticia.foto}}/>
+        <ion-card-content>
+          <ion-card-title class="titulo">
+            {{noticia.title}}
+          </ion-card-title>
+          <p class="fecha">{{noticia.startTime}}</p>
+          <p class="resumen">
+            {{noticia.texto}}
+          </p>
+          <ion-row padding>
+            <ion-col>
+              <button ion-button clear small color="primary" icon-start>
+                <ion-icon name='md-archive'></ion-icon>
+                Guardar
+              </button>
+            </ion-col>
+            <ion-col >
+              <button ion-button clear small color="primary" icon-start>
+                <ion-icon name='ios-heart'></ion-icon>
+                Like
+              </button>
+            </ion-col>    
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+</ion-list>
  <!--<button ion-button block (click)="logoutUser()">Log out</button>-->
 </ion-content>
