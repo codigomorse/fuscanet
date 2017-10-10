@@ -28,7 +28,7 @@ export class MyApp {
       { title: 'Inicio', component: Home },
       { title: 'Perfil', component: User },
       { title: 'Calendario', component: ListPage },
-      { title: 'Catalogo', component: Catalogo },
+      { title: 'Vademecum', component: Catalogo },
     ];
 
   }
