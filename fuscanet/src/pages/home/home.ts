@@ -75,10 +75,14 @@ export class Home {
     console.log("click añadir");
     console.log(event);
     console.log(this.eventSource);
-    this.eventSource.push(event);
+    if(this.eventSource.indexOf(event) != -1){
+      console.log("ya asistiras a este evento");
+    }else{
+      this.eventSource.push(event);
+    }
     console.log(this.eventSource);
     this.afAuth.authState.take(1).subscribe(auth => {
-      this.afDb.object(`eventlist/${auth.uid}`).update(this.eventSource).then(() => alert("El evento se agrego correctamente"));
+      //this.afDb.object(`eventlist/${auth.uid}`).update(this.eventSource).then(() => alert("El evento se agrego correctamente"));
     })
   }
 }
