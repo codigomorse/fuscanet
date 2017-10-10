@@ -20,6 +20,7 @@ export class ListPage {
   }
 
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private alertCtrl: AlertController) {
+    moment.locale('es');
     this.afAuth.authState.subscribe(data => {
       this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
         console.log("esto hay");  
@@ -65,19 +66,26 @@ export class ListPage {
         eventData.startTime = new Date(data.startTime);
         eventData.endTime = new Date(data.endTime);
         
+        console.log(eventData.startTime);
+        console.log(eventData.endTime);
         //console.log('este es el evento');
         //console.log(eventData);
-        let events = this.eventSource;
-        events.push(eventData);
-        this.eventSource = [];
-        setTimeout(() => {
-          this.eventSource = events;
-          this.afAuth.authState.take(1).subscribe(auth => {
-            //console.log('estos son todos los eventos');
-            //console.log(events);
-              this.afDb.object(`eventlist/${auth.uid}`).update(events).then(() => alert("El evento se agrego correctamente"));
-            })
-        });
+        if(eventData.endTime > eventData.startTime){
+          console.log("la fecha de fin es mayor que la de inicio");
+          let events = this.eventSource;
+          events.push(eventData);
+          this.eventSource = [];
+          setTimeout(() => {
+            this.eventSource = events;
+            this.afAuth.authState.take(1).subscribe(auth => {
+              console.log('estos son todos los eventos');
+              console.log(events);
+                this.afDb.object(`eventlist/${auth.uid}`).update(events).then(() => alert("El evento se agrego correctamente"));
+              })
+          });
+        }else{
+          alert("la fecha de fin debe ser mayor a la de inicio");
+        }
       }
     });
   }

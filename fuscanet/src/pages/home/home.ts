@@ -35,7 +35,7 @@ export class Home {
       });
       this.afDb.object(`/noticia`).subscribe(_data => {
         this.noticias = this.afDb.list('noticia');
-        this.noticias.subscribe(data => console.log(data));  
+        //this.noticias.subscribe(data => console.log(data));  
       });
       this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
         //console.log("esto hay");  
