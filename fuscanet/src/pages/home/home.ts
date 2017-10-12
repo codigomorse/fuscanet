@@ -40,6 +40,7 @@ export class Home {
       this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
         //console.log("esto hay");  
         //console.log(_data);
+        try{
         _data.forEach(element => {
           //console.log(element);
           element.startTime = new Date(element.startTime);
@@ -47,6 +48,7 @@ export class Home {
         });
         //console.log(_data[0].startTime);
         this.eventSource = _data;  
+      }catch(e){console.log(e)}
       });  
      });
   }
@@ -76,9 +78,10 @@ export class Home {
     console.log(event);
     console.log(this.eventSource);
     if(this.eventSource.indexOf(event) != -1){
-      console.log("ya asistiras a este evento");
+      alert("ya asistiras a este evento");
     }else{
       this.eventSource.push(event);
+      alert("se agrega el evento")
     }
     console.log(this.eventSource);
     this.afAuth.authState.take(1).subscribe(auth => {
