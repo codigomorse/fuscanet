@@ -81,13 +81,13 @@ export class Home {
     this.formatTime(this.eventSource);
     //console.log(event.title);
     try{
-    let asiste = this.asiste(this.eventSource, event);
+    let asiste = this.asiste( event);
     console.log(asiste);
     if(asiste){
       alert("ya asistiras a este evento");
     }else{
       this.eventSource.push( event);
-      alert("se agrega el evento")
+      //alert("se agrega el evento")
       console.log(this.eventSource);
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
@@ -95,7 +95,7 @@ export class Home {
     }}catch(e){
       this.eventSource = [];
       this.eventSource.push(event);
-      alert("se agrega el evento")
+      //alert("se agrega el evento")
       console.log(this.eventSource);
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
@@ -112,15 +112,15 @@ export class Home {
       //console.log(event);
     });}catch(e){}
   }
-  asiste(eventSource, event){
+  asiste(event){
     let asistira = false;
-    eventSource.forEach(element => {
-        console.log('compara '+element.title+' con '+event.title);
-        if(element.title==event.title){
+    try{this.eventSource.forEach(element => {
+        //console.log('compara '+element.title+' con '+event.title);
+        if(element.title==event.title && element.startTime==event.startTime){
           asistira = true;
         }
-    });
-    console.log('retorna '+asistira);
+    });}catch(e){}
+    //console.log('retorna '+asistira);
     return asistira;
   }
 }
