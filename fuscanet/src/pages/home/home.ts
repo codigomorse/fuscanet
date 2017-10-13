@@ -3,7 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController,Platform } from 'i
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
+import { Event } from '../../models/event';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable  } from 'angularfire2/database';
+import * as moment from 'moment';
 
 @IonicPage()
 @Component({
@@ -14,8 +16,8 @@ export class Home {
 
   profileData: FirebaseObjectObservable<Profile>;
   user={};
-  eventSource=[];
-  events: FirebaseListObservable<Profile[]>;
+  eventSource: Event[];
+  events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
@@ -48,7 +50,7 @@ export class Home {
         });
         //console.log(_data[0].startTime);
         this.eventSource = _data;  
-      }catch(e){console.log(e)}
+      }catch(e){console.log("event list vacio")}
       });  
      });
   }
@@ -75,17 +77,50 @@ export class Home {
   }
   asistir(event){
     console.log("click añadir");
-    console.log(event);
-    console.log(this.eventSource);
-    if(this.eventSource.indexOf(event) != -1){
+    //console.log(this.eventSource);
+    this.formatTime(this.eventSource);
+    //console.log(event.title);
+    try{
+    let asiste = this.asiste(this.eventSource, event);
+    console.log(asiste);
+    if(asiste){
       alert("ya asistiras a este evento");
     }else{
+      this.eventSource.push( event);
+      alert("se agrega el evento")
+      console.log(this.eventSource);
+      this.afAuth.authState.take(1).subscribe(auth => {
+        this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
+      })
+    }}catch(e){
+      this.eventSource = [];
       this.eventSource.push(event);
       alert("se agrega el evento")
+      console.log(this.eventSource);
+      this.afAuth.authState.take(1).subscribe(auth => {
+        this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
+      })
     }
-    console.log(this.eventSource);
-    this.afAuth.authState.take(1).subscribe(auth => {
-      //this.afDb.object(`eventlist/${auth.uid}`).update(this.eventSource).then(() => alert("El evento se agrego correctamente"));
-    })
+  }
+  formatTime(events){
+    try{
+    events.forEach(event => {
+      //console.log(event);
+      //console.log("format time");
+      event.startTime= moment(event.startTime).format();
+      event.endTime= moment(event.endTime).format();
+      //console.log(event);
+    });}catch(e){}
+  }
+  asiste(eventSource, event){
+    let asistira = false;
+    eventSource.forEach(element => {
+        console.log('compara '+element.title+' con '+event.title);
+        if(element.title==event.title){
+          asistira = true;
+        }
+    });
+    console.log('retorna '+asistira);
+    return asistira;
   }
 }
