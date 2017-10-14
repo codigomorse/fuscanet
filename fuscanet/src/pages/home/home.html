@@ -11,7 +11,7 @@
 <ion-content padding>
   <h2>Noticias y eventos</h2>
   <ion-list>
-      <ion-card *ngFor="let event of events | async " >
+      <ion-card *ngFor="let event of eventsToShow " >
           <img src={{event.foto}}/>
           <ion-card-content>
             <ion-card-title class="titulo">
@@ -28,10 +28,16 @@
                   Detalles
                 </button>
               </ion-col>
-              <ion-col>
-                <button ion-button clear small color="primary" (click)="asistir(event)" icon-start>
+              <ion-col *ngIf=event.voy>
+                <button ion-button clear small color="primary"  (click)="asistir(event)" icon-start>
                   <ion-icon name='md-calendar'></ion-icon>
                   Asisitiré
+                </button>
+              </ion-col>
+              <ion-col *ngIf=!event.voy>
+                <button ion-button clear small color="primary"  (click)="asistir(event)" icon-start>
+                  <ion-icon name='md-calendar'></ion-icon>
+                  No ir
                 </button>
               </ion-col>
             </ion-row>

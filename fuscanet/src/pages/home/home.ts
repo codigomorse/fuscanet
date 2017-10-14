@@ -17,6 +17,7 @@ export class Home {
   profileData: FirebaseObjectObservable<Profile>;
   user={};
   eventSource: Event[];
+  eventsToShow: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
@@ -33,7 +34,7 @@ export class Home {
       });
       this.afDb.object(`/events/${data.uid}`).subscribe(_data => {
         this.events = this.afDb.list('events');
-        //this.events.subscribe(data => console.log(data));  
+        this.events.subscribe(data => this.creoLocal(data));  
       });
       this.afDb.object(`/noticia`).subscribe(_data => {
         this.noticias = this.afDb.list('noticia');
@@ -81,7 +82,7 @@ export class Home {
     this.formatTime(this.eventSource);
     //console.log(event.title);
     try{
-    let asiste = this.asiste( event);
+    let asiste = this.asiste(event);
     console.log(asiste);
     if(asiste){
       alert("ya asistiras a este evento");
@@ -91,6 +92,7 @@ export class Home {
       console.log(this.eventSource);
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
+        this.events.subscribe(data => this.creoLocal(data));
       })
     }}catch(e){
       this.eventSource = [];
@@ -99,6 +101,7 @@ export class Home {
       console.log(this.eventSource);
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
+        this.events.subscribe(data => this.creoLocal(data));
       })
     }
   }
@@ -115,12 +118,27 @@ export class Home {
   asiste(event){
     let asistira = false;
     try{this.eventSource.forEach(element => {
-        //console.log('compara '+element.title+' con '+event.title);
+      element.startTime= moment(event.startTime).format();
+      element.endTime= moment(event.endTime).format();
+        //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
         if(element.title==event.title && element.startTime==event.startTime){
           asistira = true;
         }
     });}catch(e){}
     //console.log('retorna '+asistira);
     return asistira;
+  }
+  creoLocal(events){
+    this.eventsToShow=[];
+    events.forEach(element => {
+      let asiste = this.asiste(element);
+      //console.log(asiste);
+      if(asiste){
+        element.voy = false;
+      }else{element.voy = true}
+        //console.log(this.eventsToShow);
+        //console.log(element);
+        this.eventsToShow.push(element);
+    });
   }
 }

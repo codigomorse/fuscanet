@@ -6,4 +6,5 @@ export interface Event{
     foto:string;
     startTime:string;
     texto:string;
+    voy:boolean;
 }
