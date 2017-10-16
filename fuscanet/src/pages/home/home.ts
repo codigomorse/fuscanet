@@ -141,4 +141,37 @@ export class Home {
         this.eventsToShow.push(element);
     });
   }
+  noAsistir(event){
+    console.log("no quiero ir mas");
+    console.log(this.eventSource);
+    this.getEventPosition(event);
+    console.log(event);
+    let pos = this.getEventPosition(event);
+    console.log(pos);
+    if(pos != -1){
+      this.eventSource.splice(pos, 1);
+    }
+    console.log(this.eventSource);
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se elimino correctamente"));
+      this.events.subscribe(data => this.creoLocal(data));
+    })
+    //this.events.subscribe(data => this.creoLocal(data));
+  }
+  getEventPosition(event){
+    let cont =0;
+    let dev = -1;
+    this.eventSource.forEach(element => {
+      element.startTime= moment(event.startTime).format();
+      element.endTime= moment(event.endTime).format();
+      //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
+      if(element.title==event.title && element.startTime==event.startTime){
+        //console.log(cont);
+        dev = cont;
+      }
+      //console.log(cont);
+      cont ++;
+    });
+    return dev; 
+  }
 }
