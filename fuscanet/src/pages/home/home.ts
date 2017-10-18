@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController,Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,Platform, ModalController } from 'ionic-angular';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
 import { Event } from '../../models/event';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable  } from 'angularfire2/database';
 import * as moment from 'moment';
+import { Eventdetails } from '../eventdetails/eventdetails';
 
 @IonicPage()
 @Component({
@@ -21,7 +22,7 @@ export class Home {
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
-  constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -173,5 +174,10 @@ export class Home {
       cont ++;
     });
     return dev; 
+  }
+  showDetails(event){
+    let modal = this.modalCtrl.create(Eventdetails,  {'event': event});
+    //modal.onDidDismiss((data) => {console.log(data)});
+    modal.present();
   }
 }

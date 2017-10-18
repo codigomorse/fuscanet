@@ -1,0 +1,26 @@
+<ion-header>
+  
+    <ion-navbar>
+      <ion-title>{{evento.title}}</ion-title>
+      <ion-buttons end>
+        <button ion-button icon-only (click)="closeModal()"><ion-icon name="close"></ion-icon></button>
+      </ion-buttons>
+    </ion-navbar>
+  
+  </ion-header>
+  
+  
+  <ion-content padding>
+      <ion-card>
+          <img src={{evento.foto}}/>
+          <ion-card-content>
+            <ion-card-title class="titulo">
+              {{evento.title}}
+            </ion-card-title>
+            <p class="fecha">{{evento.startTime}}</p>
+            <p class="resumen">
+              {{evento.texto}}
+            </p>
+          </ion-card-content>
+        </ion-card>
+  </ion-content>
