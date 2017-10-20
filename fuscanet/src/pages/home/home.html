@@ -37,7 +37,7 @@
               <ion-col *ngIf=!event.voy>
                 <button ion-button clear small color="primary"  (click)="noAsistir(event)" icon-start>
                   <ion-icon name='md-calendar'></ion-icon>
-                  No ir
+                  No Asisitiré
                 </button>
               </ion-col>
             </ion-row>
@@ -56,8 +56,14 @@
             {{noticia.texto}}
           </p>
           <ion-row padding>
+              <ion-col>
+                  <button ion-button clear small color="primary" icon-start (click)="showDetails(noticia)">
+                    <ion-icon name='ios-information-circle'></ion-icon>
+                    Detalles
+                  </button>
+                </ion-col>
             <ion-col>
-              <button ion-button clear small color="primary" icon-start>
+              <button ion-button clear small color="primary" icon-start (click)="guardar(noticia)">
                 <ion-icon name='md-archive'></ion-icon>
                 Guardar
               </button>

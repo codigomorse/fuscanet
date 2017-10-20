@@ -19,6 +19,7 @@ export class Home {
   user={};
   eventSource: Event[];
   eventsToShow: Event[];
+  noticiaList: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
@@ -143,16 +144,16 @@ export class Home {
     });
   }
   noAsistir(event){
-    console.log("no quiero ir mas");
-    console.log(this.eventSource);
+    //console.log("no quiero ir mas");
+    //console.log(this.eventSource);
     this.getEventPosition(event);
-    console.log(event);
+    //console.log(event);
     let pos = this.getEventPosition(event);
-    console.log(pos);
+    //console.log(pos);
     if(pos != -1){
       this.eventSource.splice(pos, 1);
     }
-    console.log(this.eventSource);
+    //console.log(this.eventSource);
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se elimino correctamente"));
       this.events.subscribe(data => this.creoLocal(data));
@@ -179,5 +180,18 @@ export class Home {
     let modal = this.modalCtrl.create(Eventdetails,  {'event': event});
     //modal.onDidDismiss((data) => {console.log(data)});
     modal.present();
+  }
+  guardar(noticia){
+    console.log(noticia);
+    try{
+      this.noticiaList.push(noticia);
+    }catch(e){
+      this.noticiaList=[];
+      this.noticiaList.push(noticia);
+    }
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`noticiaList/${auth.uid}`).set(this.noticiaList).then(() => alert("La noticia se guardo correctamente"));
+      this.events.subscribe(data => this.creoLocal(data));
+    })
   }
 }

@@ -11,7 +11,7 @@ export class Eventdetails {
   evento: Event;
   constructor(public viewCtrl:ViewController,public navCtrl: NavController, public navParams: NavParams) {
     this.evento=this.navParams.get('event');
-    console.log(this.evento);
+    //console.log(this.evento);
   }
 
 
