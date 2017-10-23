@@ -50,7 +50,7 @@
         </ion-card>
   </ion-list>
   <ion-list *ngIf='showNoticia'>
-    <ion-card *ngFor="let noticia of noticias | async " >
+    <ion-card *ngFor="let noticia of noticiasToShow  " >
         <img src={{noticia.foto}}/>
         <ion-card-content>
           <ion-card-title class="titulo">

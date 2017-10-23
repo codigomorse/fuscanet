@@ -20,6 +20,7 @@ export class Home {
   eventSource: Event[];
   eventsToShow: Event[];
   noticiaList: Event[];
+  noticiasToShow: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
@@ -45,7 +46,7 @@ export class Home {
       });
       this.afDb.object(`/noticia`).subscribe(_data => {
         this.noticias = this.afDb.list('noticia');
-        //this.noticias.subscribe(data => console.log(data));  
+        this.noticias.subscribe(data => this.creoLocalNoticias(data));  
       });
       this.afDb.object(`/eventlist/${data.uid}`).subscribe(_data => {
         //console.log("esto hay");  
@@ -146,6 +147,19 @@ export class Home {
         //console.log(this.eventsToShow);
         //console.log(element);
         this.eventsToShow.push(element);
+    });
+  }
+  creoLocalNoticias(events){
+    this.noticiasToShow=[];
+    events.forEach(element => {
+      let asiste = this.asiste(element);
+      //console.log(asiste);
+      if(asiste){
+        element.voy = false;
+      }else{element.voy = true}
+        //console.log(this.eventsToShow);
+        //console.log(element);
+        this.noticiasToShow.push(element);
     });
   }
   noAsistir(event){
