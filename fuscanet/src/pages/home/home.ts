@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController,Platform, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonicPage, NavController,Content, NavParams, AlertController,Platform, ModalController } from 'ionic-angular';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
@@ -14,7 +14,7 @@ import { Eventdetails } from '../eventdetails/eventdetails';
   templateUrl: 'home.html',
 })
 export class Home {
-
+  @ViewChild(Content) content: Content;
   profileData: FirebaseObjectObservable<Profile>;
   user={};
   eventSource: Event[];
@@ -23,6 +23,11 @@ export class Home {
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
+  showNoticia=true;
+  btnEventoColor: string = '#f4f4f4';
+  btnNoticiaColor: string = '#488aff';
+  btnEventoTextColor: string = '#488aff';
+  btnNoticiaTextColor: string = '#f4f4f4';
   constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
   }
 
@@ -193,5 +198,19 @@ export class Home {
       this.afDb.object(`noticiaList/${auth.uid}`).set(this.noticiaList).then(() => alert("La noticia se guardo correctamente"));
       this.events.subscribe(data => this.creoLocal(data));
     })
+  }
+  verNoticia(){
+    this.showNoticia = true;
+    this.btnEventoColor = "#f4f4f4";
+    this.btnNoticiaColor = "#488aff";
+    this.btnEventoTextColor="#488aff";
+    this.btnNoticiaTextColor="#f4f4f4";
+  }
+  verEvento(){
+    this.showNoticia = false;
+    this.btnEventoColor = "#488aff";
+    this.btnNoticiaColor = "#f4f4f4";
+    this.btnEventoTextColor="#f4f4f4";
+    this.btnNoticiaTextColor="#488aff";
   }
 }

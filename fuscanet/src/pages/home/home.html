@@ -8,9 +8,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Noticias y eventos</h2>
-  <ion-list>
+<ion-content>
+    <button ion-button id="btnNoticia" (click)=verNoticia() [ngStyle]="{'background-color': btnNoticiaColor, 'color' : btnNoticiaTextColor}">
+      Noticias
+    </button>
+    <button ion-button id="btnEvento" (click)=verEvento() [ngStyle]="{'background-color': btnEventoColor, 'color' : btnEventoTextColor}">
+      Eventos
+    </button>
+  <ion-list *ngIf='!showNoticia'>
       <ion-card *ngFor="let event of eventsToShow " >
           <img src={{event.foto}}/>
           <ion-card-content>
@@ -44,7 +49,7 @@
           </ion-card-content>
         </ion-card>
   </ion-list>
-  <ion-list>
+  <ion-list *ngIf='showNoticia'>
     <ion-card *ngFor="let noticia of noticias | async " >
         <img src={{noticia.foto}}/>
         <ion-card-content>
