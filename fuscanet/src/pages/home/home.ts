@@ -266,6 +266,9 @@ export class Home {
     //console.log('retorna '+asistira);
     return asistira;
   }
+  valorar(noticia){
+    alert("valorar");
+  }
   asiste(event){
     let asistira = false;
     try{this.eventSource.forEach(element => {
