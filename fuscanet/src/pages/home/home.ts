@@ -220,7 +220,7 @@ export class Home {
     }
     this.afAuth.authState.take(1).subscribe(auth => {
       this.afDb.object(`noticiaList/${auth.uid}`).set(this.noticiaList).then(() => alert("La noticia se guardo correctamente"));
-      this.events.subscribe(data => this.creoLocal(data));
+      this.noticias.subscribe(data => this.creoLocalNoticias(data));
     })
   }
   //ACA ME FIJO SI LA NOTICA ESTA GUARDADA
