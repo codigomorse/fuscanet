@@ -17,5 +17,7 @@
 
 
 <ion-content padding>
-  <div *ngFor="let key of keys()" id="texto"> {{key}} : {{product[key]}} </div>
+  <div *ngFor="let key of keys()" id="texto"> 
+    <p id="titulo">{{key}} : </p><p id="texto">{{product[key]}}</p>
+  </div>
 </ion-content>
