@@ -71,8 +71,7 @@ export class Home {
         });
         //console.log(_data);
         this.noticiaList = _data;  
-        console.log("aca q mierda hay??");
-        console.log(this.noticiaList);
+        //console.log(this.noticiaList);
       }catch(e){console.log("event list vacio")}
       });
       //TRAE LAS NOTICIAS Y CREA LAS NOTICIAS A MOSTRAR
@@ -172,10 +171,23 @@ export class Home {
         this.noticiasToShow.push(element);
     });
   }
+  olvidar(noticia){
+    //alert("olvidar noticia");
+    let posNot = this.getNoticiaPosition(noticia);
+    //console.log(posNot);
+    if(posNot != -1){
+      this.noticiaList.splice(posNot, 1);
+    }
+    //console.log(this.eventSource);
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`noticiaList/${auth.uid}`).set(this.noticiaList).then(() => alert("La noricia se olvido correctamente correctamente"));
+      this.noticias.subscribe(data => this.creoLocalNoticias(data));
+    })
+  }
   noAsistir(event){
     //console.log("no quiero ir mas");
     //console.log(this.eventSource);
-    this.getEventPosition(event);
+    //this.getEventPosition(event);
     //console.log(event);
     let pos = this.getEventPosition(event);
     //console.log(pos);
@@ -205,6 +217,22 @@ export class Home {
     });
     return dev; 
   }
+  getNoticiaPosition(noticia){
+    let cont =0;
+    let dev = -1;
+    this.noticiaList.forEach(element => {
+      element.startTime= moment(noticia.startTime).format();
+      element.endTime= moment(noticia.endTime).format();
+      //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
+      if(element.title==noticia.title && element.startTime==noticia.startTime){
+        //console.log(cont);
+        dev = cont;
+      }
+      //console.log(cont);
+      cont ++;
+    });
+    return dev; 
+  }
   showDetails(event){
     let modal = this.modalCtrl.create(Eventdetails,  {'event': event});
     //modal.onDidDismiss((data) => {console.log(data)});
@@ -226,7 +254,7 @@ export class Home {
   //ACA ME FIJO SI LA NOTICA ESTA GUARDADA
   guarde(noticia){
     let asistira = false;
-    console.log(this.noticiaList);
+    //console.log(this.noticiaList);
     try{this.noticiaList.forEach(element => {
       element.startTime= moment(noticia.startTime).format();
       element.endTime= moment(noticia.endTime).format();
@@ -243,12 +271,12 @@ export class Home {
     try{this.eventSource.forEach(element => {
       element.startTime= moment(event.startTime).format();
       element.endTime= moment(event.endTime).format();
-        console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
+        //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
         if(element.title==event.title && element.startTime==event.startTime){
           asistira = true;
         }
     });}catch(e){}
-    console.log('retorna '+asistira);
+    //console.log('retorna '+asistira);
     return asistira;
   }
   verNoticia(){
