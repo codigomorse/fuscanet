@@ -67,10 +67,16 @@
                     Detalles
                   </button>
                 </ion-col>
-            <ion-col>
+            <ion-col *ngIf=noticia.voy>
               <button ion-button clear small color="primary" icon-start (click)="guardar(noticia)">
                 <ion-icon name='md-archive'></ion-icon>
                 Guardar
+              </button>
+            </ion-col>
+            <ion-col *ngIf=!noticia.voy>
+              <button ion-button clear small color="primary" icon-start (click)="guardar(noticia)">
+                <ion-icon name='md-archive'></ion-icon>
+                Olvidar
               </button>
             </ion-col>
             <ion-col >
