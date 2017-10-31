@@ -9,6 +9,7 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { Catalogo } from '../pages/catalogo/catalogo';
 import { User } from '../pages/user/user';
+import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardadas';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,6 +29,7 @@ export class MyApp {
       { title: 'Inicio', component: Home },
       { title: 'Perfil', component: User },
       { title: 'Calendario', component: ListPage },
+      { title: 'Noticias guardadas', component: NoticiasGuardadas },
       { title: 'Vademecum', component: Catalogo },
     ];
 

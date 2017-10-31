@@ -11,6 +11,7 @@ import { Catalogo } from '../pages/catalogo/catalogo';
 import { User } from '../pages/user/user';
 import { Itemdetails } from '../pages/itemdetails/itemdetails';
 import { Eventdetails } from '../pages/eventdetails/eventdetails';
+import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardadas';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -28,7 +29,8 @@ import { Camera } from '@ionic-native/camera';
     Catalogo,
     User,
     Itemdetails,
-    Eventdetails
+    Eventdetails,
+    NoticiasGuardadas
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { Camera } from '@ionic-native/camera';
     Catalogo,
     User,
     Itemdetails,
-    Eventdetails
+    Eventdetails,
+    NoticiasGuardadas
   ],
   providers: [
     StatusBar,

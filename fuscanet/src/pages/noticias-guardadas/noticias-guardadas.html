@@ -1,0 +1,46 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Noticias guardadas</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-card *ngFor="let noticia of noticiaList  " >
+            <img src={{noticia.foto}}/>
+            <ion-card-content>
+              <ion-card-title class="titulo">
+                {{noticia.title}}
+              </ion-card-title>
+              <p class="fecha">{{noticia.startTime}}</p>
+              <p class="resumen">
+                {{noticia.texto}}
+              </p>
+              <ion-row padding>
+                  <ion-col>
+                      <button ion-button clear small color="primary" icon-start (click)="showDetails(noticia)">
+                        <ion-icon name='ios-information-circle'></ion-icon>
+                        Detalles
+                      </button>
+                    </ion-col>
+                <ion-col>
+                  <button ion-button clear small color="primary" icon-start (click)="olvidar(noticia)">
+                    <ion-icon name='md-archive'></ion-icon>
+                    Olvidar
+                  </button>
+                </ion-col>
+                <ion-col >
+                  <button ion-button clear small color="primary" icon-start (click)="valorar(noticia)">
+                    <ion-icon name='ios-heart'></ion-icon>
+                    Valorar
+                  </button>
+                </ion-col>    
+              </ion-row>
+            </ion-card-content>
+          </ion-card>
+    </ion-list>
+</ion-content>
