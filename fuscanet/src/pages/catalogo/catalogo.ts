@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, ModalController, LoadingController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Product } from '../../models/product';
@@ -15,12 +15,22 @@ export class Catalogo {
   origProd:any;
   productos$: FirebaseListObservable<Product[]>;
 
-  constructor(public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+    let loading = this.loadingCtrl.create({
+      content: 'Cargando productos...'
+    });
+  
+    loading.present();
+
     this.afAuth.authState.subscribe(data => {
       this.user = data;
       //console.log(this.user);  
       this.productos$ = this.afDb.list('product');
-      this.productos$.subscribe(data => this.origProd=data);
+      this.productos$.subscribe(data => {
+        this.origProd=data;
+        console.log("se cargo");
+        loading.dismiss();
+      });
      }); 
   }
   initializeItems() {
