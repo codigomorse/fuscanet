@@ -79,12 +79,18 @@
                 Olvidar
               </button>
             </ion-col>
-            <ion-col >
+            <ion-col *ngIf=!noticia.like>
               <button ion-button clear small color="primary" icon-start (click)="valorar(noticia)">
-                <ion-icon name='ios-heart'></ion-icon>
-                Valorar
+                <ion-icon name='md-thumbs-up'></ion-icon>
+                Me gusta
               </button>
-            </ion-col>    
+            </ion-col>
+            <ion-col *ngIf=noticia.like>
+                <button ion-button clear small color="primary" icon-start (click)="desvalorar(noticia)">
+                  <ion-icon name='md-thumbs-down'></ion-icon>
+                  No me gusta
+                </button>
+              </ion-col>
           </ion-row>
         </ion-card-content>
       </ion-card>

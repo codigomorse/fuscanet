@@ -7,4 +7,5 @@ export interface Event{
     startTime:string;
     texto:string;
     voy:boolean;
+    like:boolean;
 }

@@ -21,6 +21,7 @@ export class Home {
   eventsToShow: Event[];
   noticiaList: Event[];
   noticiasToShow: Event[];
+  noticiaLike: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
@@ -162,7 +163,7 @@ export class Home {
     }
     //console.log(this.eventSource);
     this.afAuth.authState.take(1).subscribe(auth => {
-      this.afDb.object(`noticiaList/${auth.uid}`).set(this.noticiaList).then(() => alert("La noricia se olvido correctamente correctamente"));
+      this.afDb.object(`noticiaList/${auth.uid}`).set(this.noticiaList).then(() => alert("La noricia se olvido correctamente"));
       this.noticias.subscribe(data => this.creoLocalNoticias(data));
     })
   }
@@ -215,6 +216,22 @@ export class Home {
     });
     return dev; 
   }
+  getNoticiaPositionLike(noticia){
+    let cont =0;
+    let dev = -1;
+    this.noticiaLike.forEach(element => {
+      element.startTime= moment(noticia.startTime).format();
+      element.endTime= moment(noticia.endTime).format();
+      //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
+      if(element.title==noticia.title && element.startTime==noticia.startTime){
+        //console.log(cont);
+        dev = cont;
+      }
+      //console.log(cont);
+      cont ++;
+    });
+    return dev; 
+  }
   showDetails(event){
     let modal = this.modalCtrl.create(Eventdetails,  {'event': event});
     //modal.onDidDismiss((data) => {console.log(data)});
@@ -249,7 +266,31 @@ export class Home {
     return asistira;
   }
   valorar(noticia){
-    alert("valorar");
+    noticia.like=true;
+    console.log(noticia);
+    try{
+      this.noticiaLike.push(noticia);
+    }catch(e){
+      this.noticiaLike=[];
+      this.noticiaLike.push(noticia);
+    }
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`noticiaLike/${auth.uid}`).set(this.noticiaLike).then(() => alert("La noticia se valoro correctamente"));
+    })
+  }
+  desvalorar(noticia){
+    noticia.like= false;
+    console.log(noticia);
+    let posNot = this.getNoticiaPositionLike(noticia);
+    console.log(posNot);
+     if(posNot != -1){
+       this.noticiaLike.splice(posNot, 1);
+     }
+    //console.log(this.eventSource);
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`noticiaLike/${auth.uid}`).set(this.noticiaLike).then(() => alert("La noticia se valoro correctamente "));
+      this.noticias.subscribe(data => this.creoLocalNoticias(data));
+    })
   }
   asiste(event){
     let asistira = false;
