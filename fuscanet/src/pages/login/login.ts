@@ -34,12 +34,19 @@ user = {} as User;
   }
 
   ionViewDidLoad() {
+    let loading = this.loadingCtrl.create({
+      content: 'Autentificando'
+    });
+  
+    loading.present();
     const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
         if (!user) {
           unsubscribe();
+          loading.dismiss();
         } else {
           this.afDb.object(`/profile/${user.uid}`).subscribe(_data => {
           this.profile = _data;
+          loading.dismiss();
           //console.log(this.profile);
           if(this.profile){
             if(this.profile.perfil=="nuevo"){
