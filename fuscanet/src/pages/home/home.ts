@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController,Content, NavParams, AlertController,Platform, ModalController } from 'ionic-angular';
+import { IonicPage, NavController,Content, NavParams, AlertController, ModalController } from 'ionic-angular';
 import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
@@ -29,7 +29,7 @@ export class Home {
   btnNoticiaColor: string = '#488aff';
   btnEventoTextColor: string = '#488aff';
   btnNoticiaTextColor: string = '#f4f4f4';
-  constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public platform: Platform,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
@@ -80,24 +80,6 @@ export class Home {
         this.noticias.subscribe(data => this.creoLocalNoticias(data));  
       });  
      });
-  }
-  logoutUser(){
-        let alert = this.alert.create({
-        title: 'Confirm',
-        message: 'Do you want sing out and exit?',
-        buttons: [{
-          text: "sing out and exit?",
-          handler: () => { this.exitApp() }
-        }, {
-          text: "Cancel",
-          role: 'cancel'
-        }]
-      })
-      alert.present();
-  }
-  exitApp(){
-    firebase.auth().signOut();
-    this.platform.exitApp();
   }
   goNoticia(){
     //console.log("click");

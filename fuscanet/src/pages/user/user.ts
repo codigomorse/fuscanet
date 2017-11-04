@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController,Loading,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController,Platform,Loading,LoadingController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -30,7 +30,7 @@ export class User {
     sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
   }
 
-  constructor(private camera: Camera,public alertCtrl: AlertController,public formBuilder: FormBuilder,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public platform: Platform,public alert: AlertController, private camera: Camera,public alertCtrl: AlertController,public formBuilder: FormBuilder,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.mypicref = firebase.storage().ref('/');
     this.createForm = formBuilder.group({
       email: [''],
@@ -60,6 +60,24 @@ export class User {
       });  
      });
   }
+  logoutUser(){
+    let alert = this.alert.create({
+    title: 'Confirmar',
+    message: 'Desloguearse y salir?',
+    buttons: [{
+      text: "Desloguearse y salir?",
+      handler: () => { this.exitApp() }
+    }, {
+      text: "Cancelar",
+      role: 'cancel'
+    }]
+  })
+  alert.present();
+}
+exitApp(){
+  firebase.auth().signOut();
+  this.platform.exitApp();
+}
   updateUser(){
     this.afAuth.authState.take(1).subscribe(auth => {
       //console.log("perfil a guardar");
