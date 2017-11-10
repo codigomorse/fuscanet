@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content >
-  <h2>Buscar por nombre de producto</h2>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+  <h2> Buscar por nombre de producto</h2>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar" class="coso"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let product of items | slice:0:10; let i=index">
     	<h3 *ngIf="i<11" (click)=productClick(product)>{{product.$key}}</h3>

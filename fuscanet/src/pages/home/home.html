@@ -17,11 +17,12 @@
     </button>
   <ion-list *ngIf='!showNoticia'>
       <ion-card *ngFor="let event of eventsToShow " >
-          <img src={{event.foto}}/>
+          
           <ion-card-content>
             <ion-card-title class="titulo">
               {{event.title}}
             </ion-card-title>
+            <img src={{event.foto}} class="foto"/>
             <p class="fecha">{{event.startTime}}</p>
             <p class="resumen">
               {{event.texto}}
@@ -51,11 +52,13 @@
   </ion-list>
   <ion-list *ngIf='showNoticia'>
     <ion-card *ngFor="let noticia of noticiasToShow  " >
-        <img src={{noticia.foto}}/>
+        
         <ion-card-content>
-          <ion-card-title class="titulo">
-            {{noticia.title}}
-          </ion-card-title>
+            <ion-card-title class="titulo">
+                {{noticia.title}}
+              </ion-card-title>
+            <img src={{noticia.foto}} class="foto"/>
+          
           <p class="fecha">{{noticia.startTime}}</p>
           <p class="resumen">
             {{noticia.texto}}

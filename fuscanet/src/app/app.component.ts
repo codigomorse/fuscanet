@@ -18,6 +18,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = LoginPage;
+  activePage: any;
 
   pages: Array<{title: string, component: any}>;
 
@@ -32,7 +33,9 @@ export class MyApp {
       { title: 'Noticias guardadas', component: NoticiasGuardadas },
       { title: 'Vademecum', component: Catalogo },
     ];
-
+    console.log(this.pages[0]);
+    this.activePage = this.pages[0];
+    console.log(this.activePage);
   }
 
   initializeApp() {
@@ -48,5 +51,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+    this.activePage=page;
+  }
+  checkActive(page){
+    return page == this.activePage;
   }
 }
