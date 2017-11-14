@@ -92,16 +92,16 @@ export class Home {
         });
         //console.log(_data);
         this.noticiaLike = _data;  
-        console.log(this.noticiaLike);
+        //console.log(this.noticiaLike);
         this.noticiasToShow.forEach(element => {
           this.noticiaLike.forEach(noticia=>{
-            console.log("comparo");
-            console.log(element.texto);
-            console.log(noticia.texto);
+            //console.log("comparo");
+            //console.log(element.texto);
+            //console.log(noticia.texto);
             if(element.texto == noticia.texto){
               element.like=true;
             }
-            console.log(element.like);
+            //console.log(element.like);
           })
         });
       }catch(e){console.log("event list vacio")}
