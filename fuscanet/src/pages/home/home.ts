@@ -79,8 +79,35 @@ export class Home {
       this.afDb.object(`/noticia`).subscribe(_data => {
         this.noticias = this.afDb.list('noticia');
         this.noticias.subscribe(data => this.creoLocalNoticias(data));  
-      });  
+      });
+      //noticias like
+      this.afDb.object(`/noticiaLike/${data.uid}`).subscribe(_data => {
+        //console.log("esto hay");  
+        //console.log(_data);
+        try{
+        _data.forEach(element => {
+          element.startTime = new Date(element.startTime);
+          element.endTime = new Date(element.endTime);
+          //console.log(element);
+        });
+        //console.log(_data);
+        this.noticiaLike = _data;  
+        console.log(this.noticiaLike);
+        this.noticiasToShow.forEach(element => {
+          this.noticiaLike.forEach(noticia=>{
+            console.log("comparo");
+            console.log(element.texto);
+            console.log(noticia.texto);
+            if(element.texto == noticia.texto){
+              element.like=true;
+            }
+            console.log(element.like);
+          })
+        });
+      }catch(e){console.log("event list vacio")}
+      });    
      });
+     
   }
   goNoticia(){
     //console.log("click");
