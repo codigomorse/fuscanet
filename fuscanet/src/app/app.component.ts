@@ -9,6 +9,8 @@ import { LoginPage } from '../pages/login/login';
 import { ListPage } from '../pages/list/list';
 import { Catalogo } from '../pages/catalogo/catalogo';
 import { User } from '../pages/user/user';
+import { AcercaDe } from '../pages/acerca-de/acerca-de';
+import { Contacto } from '../pages/contacto/contacto';
 import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardadas';
 
 @Component({
@@ -32,6 +34,8 @@ export class MyApp {
       { title: 'Calendario', component: ListPage },
       { title: 'Noticias guardadas', component: NoticiasGuardadas },
       { title: 'Vademecum', component: Catalogo },
+      { title: 'Acerca de', component: AcercaDe },
+      { title: 'Contacto', component: Contacto },
     ];
     console.log(this.pages[0]);
     this.activePage = this.pages[0];
