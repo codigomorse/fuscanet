@@ -24,7 +24,7 @@ export class Register {
       email: [''],
       password: ['', Validators.compose([Validators.minLength(6), 
         Validators.required])],
-      cedula:['', Validators.compose([Validators.minLength(8),Validators.maxLength(8),Validators.required])],
+      matricula:[''],
       cel:['', Validators.compose([Validators.minLength(9),Validators.maxLength(9),Validators.required])],
     });
   }

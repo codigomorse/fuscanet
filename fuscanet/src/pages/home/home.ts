@@ -41,7 +41,9 @@ export class Home {
       //TRAE EL PROFILE DEL USUARIO  
       this.afDb.object(`/profile/${data.uid}`).subscribe(_data => {
           this.profile = _data;
-          //console.log(this.profile);
+          if(!this.profile.nombre){
+            alert('Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!')
+          }
       });
       //TRAE LOS EVENTOS Y CREA LOS EVENTOS A MOSTRAR
       this.afDb.object(`/events/${data.uid}`).subscribe(_data => {
