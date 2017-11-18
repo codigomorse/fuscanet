@@ -8,6 +8,8 @@
 
 
 <ion-content>
+  <h1>Atencion:</h1>
+  <h6>Sus datos seran conservados de manera totalmente confidencial.</h6>
     <form [formGroup]="createForm" (submit)="createUser()" novalidate>
 
     <ion-item>
@@ -28,24 +30,6 @@
     <ion-item class="error-message" 
       *ngIf="!createForm.controls.password.valid  && createForm.controls.password.dirty">
       <p>El password debe tener al menos 6 characters.</p>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Nombre</ion-label>
-      <ion-input formControlName="nombre" type="nombre" [(ngModel)]="profile.nombre"
-      [class.invalid]="!createForm.controls.nombre.valid && createForm.controls.nombre.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" 
-      *ngIf="!createForm.controls.nombre.valid  && createForm.controls.nombre.dirty">
-      <p>El nombre no puede estar vacio</p>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Apellido</ion-label>
-      <ion-input formControlName="apellido" type="apellido" [(ngModel)]="profile.apellido"
-      [class.invalid]="!createForm.controls.apellido.valid && createForm.controls.apellido.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" 
-      *ngIf="!createForm.controls.apellido.valid  && createForm.controls.apellido.dirty">
-      <p>El apellido no puede estar vacio</p>
     </ion-item>
     <ion-item>
       <ion-label floating>Cedula</ion-label>

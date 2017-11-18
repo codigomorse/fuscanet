@@ -24,8 +24,6 @@ export class Register {
       email: [''],
       password: ['', Validators.compose([Validators.minLength(6), 
         Validators.required])],
-      nombre:['', Validators.compose([Validators.required])],
-      apellido:['', Validators.compose([Validators.required])],
       cedula:['', Validators.compose([Validators.minLength(8),Validators.maxLength(8),Validators.required])],
       cel:['', Validators.compose([Validators.minLength(9),Validators.maxLength(9),Validators.required])],
     });
@@ -69,7 +67,7 @@ export class Register {
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
       console.log(this.profile);
-        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert("El usuario fue enviado a procesar correctamente"));
+        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert('Muchas gracias por completar su registro junto a yo medico.\nLuego de verificar su informacion recibira un mensaje para poder acceder a la aplicacion'));
       })
   } 
 }

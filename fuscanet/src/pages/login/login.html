@@ -14,7 +14,8 @@
 
 
 <ion-content padding>
-
+  <h1>Yo Medico</h1>
+  <h6>Este servicio es exclusivo para los medicos recibidos y autorizados por la universidad de la Republica Oriental del Uruguay</h6>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
     <ion-item>
@@ -34,19 +35,19 @@
     </ion-item>
     <ion-item class="error-message" 
       *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.dirty">
-      <p>Your password needs more than 6 characters.</p>
+      <p>La contraseña debe tener mas de 6 caracteres</p>
     </ion-item>
 
     <button ion-button block type="submit" [disabled]="!loginForm.valid">
-      login
+      Entrar
     </button>
 
   </form>
     <button ion-button block clear (click)="goToResetPassword()">
-    I forgot my password
+    Olvide mi contraseña
   </button>
   <button ion-button block color="secondary" (click)="goToSignup()">
-    Create a new account
+    Crear nueva cuenta
   </button>
 
 </ion-content>

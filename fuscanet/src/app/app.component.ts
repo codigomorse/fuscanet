@@ -37,9 +37,7 @@ export class MyApp {
       { title: 'Acerca de', component: AcercaDe },
       { title: 'Contacto', component: Contacto },
     ];
-    console.log(this.pages[0]);
     this.activePage = this.pages[0];
-    console.log(this.activePage);
   }
 
   initializeApp() {

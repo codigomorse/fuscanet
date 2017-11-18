@@ -39,7 +39,8 @@ user = {} as User;
     });
   
     loading.present();
-    const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
+    
+      const unsubscribe = this.afAuth.auth.onAuthStateChanged((user) => {
         if (!user) {
           unsubscribe();
           loading.dismiss();
@@ -47,7 +48,6 @@ user = {} as User;
           this.afDb.object(`/profile/${user.uid}`).subscribe(_data => {
           this.profile = _data;
           loading.dismiss();
-          //console.log(this.profile);
           if(this.profile){
             if(this.profile.perfil=="nuevo"){
               alert("Su usuario se encuentra pendiente de aprobacion");
@@ -56,11 +56,10 @@ user = {} as User;
             }
           }
         });  
-          //this.navCtrl.setRoot('Home');
-          //console.log("ya estoy logeado");
           unsubscribe();
         }
       });
+    
 
   }
   goToResetPassword(){
