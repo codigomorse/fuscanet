@@ -34,6 +34,7 @@ export class User {
     this.mypicref = firebase.storage().ref('/');
     this.createForm = formBuilder.group({
       email: [''],
+      nombre: [''],
       cel: [''],
       especialidad: [''],
       city: [''],
