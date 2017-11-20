@@ -12,4 +12,5 @@ export interface Profile{
     foto: string;
     gremio: string;
     colegios: string;
+    password: string;
 }

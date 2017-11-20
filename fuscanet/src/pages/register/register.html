@@ -10,8 +10,7 @@
 <ion-content>
   <h1>Atencion:</h1>
   <h6>Sus datos seran conservados de manera totalmente confidencial.</h6>
-    <form [formGroup]="createForm" (submit)="createUser()" novalidate>
-
+    <form [formGroup]="createForm" (submit)="siguiente()" novalidate>
     <ion-item>
       <ion-label floating>Cedula</ion-label>
       <ion-input formControlName="cedula" type="cedula" type="number" [(ngModel)]="profile.cedula"
@@ -22,7 +21,7 @@
       <p>La cedula no es correcta</p>
     </ion-item>
     <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
-      Solicitar
+      Siguiente
     </button>
 
   </form>

@@ -1,0 +1,29 @@
+<ion-header>
+    
+      <ion-navbar>
+        <ion-title>Registro Contraseña</ion-title>
+      </ion-navbar>
+    
+    </ion-header>
+    
+    
+    <ion-content>
+      <h1>Atencion:</h1>
+      <h6>Sus datos seran conservados de manera totalmente confidencial.</h6>
+        <form [formGroup]="createForm" (submit)="siguiente()" novalidate>
+        <ion-item>
+          <ion-label floating>Contraseña</ion-label>
+          <ion-input formControlName="password" type="password" type="password" [(ngModel)]="profile.password"
+          [class.invalid]="!createForm.controls.password.valid && createForm.controls.password.dirty"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" 
+          *ngIf="!createForm.controls.password.valid  && createForm.controls.password.dirty">
+          <p>La contraseña debe tener al menos 6 caracteres</p>
+        </ion-item>
+        <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
+          Solicitar
+        </button>
+    
+      </form>
+    
+    </ion-content>

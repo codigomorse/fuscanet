@@ -7,6 +7,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { Profile } from '../../models/profile';
 import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
+import { RegistroContrasena } from '../registro-contrasena/registro-contrasena';
 
 @IonicPage()
 @Component({
@@ -28,7 +29,9 @@ export class Register {
       //cel:['', Validators.compose([Validators.minLength(9),Validators.maxLength(9),Validators.required])],
     });
   }
-
+  siguiente(){
+    this.navCtrl.push(RegistroContrasena, {'profile': this.profile});
+  }
   ionViewDidLoad() {
     
   }
