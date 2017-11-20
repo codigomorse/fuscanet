@@ -21,11 +21,11 @@ export class Register {
   public loading:Loading;
   constructor(private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public formBuilder: FormBuilder,public navCtrl: NavController,public alertCtrl: AlertController, public navParams: NavParams,public loadingCtrl: LoadingController) {
     this.createForm = formBuilder.group({
-      email: [''],
-      password: ['', Validators.compose([Validators.minLength(6), 
-        Validators.required])],
+      //email: [''],
+      //password: ['', Validators.compose([Validators.minLength(6), 
+      //  Validators.required])],
       cedula:['', Validators.compose([Validators.minLength(8),Validators.maxLength(8),Validators.required])],
-      cel:['', Validators.compose([Validators.minLength(9),Validators.maxLength(9),Validators.required])],
+      //cel:['', Validators.compose([Validators.minLength(9),Validators.maxLength(9),Validators.required])],
     });
   }
 

@@ -13,25 +13,6 @@
     <form [formGroup]="createForm" (submit)="createUser()" novalidate>
 
     <ion-item>
-      <ion-label floating>Email</ion-label>
-      <ion-input formControlName="email" type="email" [(ngModel)]="user.email"
-        [class.invalid]="!createForm.controls.email.valid && createForm.controls.email.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" 
-      *ngIf="!createForm.controls.email.valid  && createForm.controls.email.dirty">
-      <p>Ingrese un correo valido</p>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input formControlName="password" type="password"  [(ngModel)]="user.password"
-        [class.invalid]="!createForm.controls.password.valid && createForm.controls.password.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" 
-      *ngIf="!createForm.controls.password.valid  && createForm.controls.password.dirty">
-      <p>El password debe tener al menos 6 characters.</p>
-    </ion-item>
-    <ion-item>
       <ion-label floating>Cedula</ion-label>
       <ion-input formControlName="cedula" type="cedula" type="number" [(ngModel)]="profile.cedula"
       [class.invalid]="!createForm.controls.cedula.valid && createForm.controls.cedula.dirty"></ion-input>
@@ -39,15 +20,6 @@
     <ion-item class="error-message" 
       *ngIf="!createForm.controls.cedula.valid  && createForm.controls.cedula.dirty">
       <p>La cedula no es correcta</p>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Cel</ion-label>
-      <ion-input formControlName="cel" type="cel" type="number" [(ngModel)]="profile.cel"
-      [class.invalid]="!createForm.controls.cel.valid && createForm.controls.cel.dirty"></ion-input>
-    </ion-item>
-    <ion-item class="error-message" 
-      *ngIf="!createForm.controls.cel.valid  && createForm.controls.cel.dirty">
-      <p>El cel no puede estar vacio</p>
     </ion-item>
     <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
       Solicitar
