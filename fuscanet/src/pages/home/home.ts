@@ -7,6 +7,8 @@ import { Event } from '../../models/event';
 import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable  } from 'angularfire2/database';
 import * as moment from 'moment';
 import { Eventdetails } from '../eventdetails/eventdetails';
+import { User } from '../user/user';
+
 
 @IonicPage()
 @Component({
@@ -41,6 +43,10 @@ export class Home {
       //TRAE EL PROFILE DEL USUARIO  
       this.afDb.object(`/profile/${data.uid}`).subscribe(_data => {
           this.profile = _data;
+          if(!this.profile.nombre){
+            alert('Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!')
+            this.navCtrl.setRoot(User);            
+          }
           //console.log(this.profile);
       });
       //TRAE LOS EVENTOS Y CREA LOS EVENTOS A MOSTRAR
