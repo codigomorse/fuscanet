@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Profile } from '../../models/profile';
+import { RegisterName } from '../register-name/register-name'
 
 @Component({
   selector: 'page-registro-contrasena',
@@ -20,10 +21,9 @@ export class RegistroContrasena {
 
   ionViewDidLoad() {
     this.profile = this.navParams.get('profile');
-    console.log(this.profile);
   }
   siguiente(){
-    console.log(this.profile);
+    this.navCtrl.push(RegisterName, {'profile': this.profile});
   }
   matchingPasswords(passwordKey: string, confirmPasswordKey: string) {
     // TODO maybe use this https://github.com/yuyang041060120/ng2-validation#notequalto-1

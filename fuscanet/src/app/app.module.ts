@@ -15,6 +15,7 @@ import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardada
 import { AcercaDe } from '../pages/acerca-de/acerca-de';
 import { Contacto } from '../pages/contacto/contacto';
 import { RegistroContrasena } from '../pages/registro-contrasena/registro-contrasena';
+import { RegisterName } from '../pages/register-name/register-name';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -36,7 +37,8 @@ import { Camera } from '@ionic-native/camera';
     NoticiasGuardadas,
     AcercaDe,
     Contacto,
-    RegistroContrasena
+    RegistroContrasena,
+    RegisterName
   ],
   imports: [
     BrowserModule,
@@ -59,7 +61,8 @@ import { Camera } from '@ionic-native/camera';
     NoticiasGuardadas,
     AcercaDe,
     Contacto,
-    RegistroContrasena
+    RegistroContrasena,
+    RegisterName
   ],
   providers: [
     StatusBar,
