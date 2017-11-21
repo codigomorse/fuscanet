@@ -5,6 +5,7 @@ import { Profile } from '../../models/profile';
 import { User } from "../../models/user";
 import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-register-cel',
@@ -26,6 +27,7 @@ export class RegisterCel {
     console.log(this.profile);
   }
   createUser(): void {
+    this.profile.perfil="nuevo";
     console.log(this.profile);
     this.afAuth.auth.createUserWithEmailAndPassword(this.profile.correo, 
         this.profile.password)
@@ -57,7 +59,9 @@ export class RegisterCel {
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
       console.log(this.profile);
-        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert('Muchas gracias por completar su registro junto a yo medico.\nLuego de verificar su informacion recibira un mensaje para poder acceder a la aplicacion'));
+        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => {alert('Muchas gracias por completar su registro junto a yo medico.\nLuego de verificar su informacion recibira un mensaje para poder acceder a la aplicacion');
+        this.navCtrl.push(LoginPage);
+      });
       })
   }
 }
