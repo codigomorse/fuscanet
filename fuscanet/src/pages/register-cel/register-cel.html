@@ -16,7 +16,7 @@
 <ion-content padding>
     <h1>Atencion:</h1>
     <h6>Sus datos seran conservados de manera totalmente confidencial.</h6>
-    <form [formGroup]="createForm" (submit)="siguiente()" novalidate>
+    <form [formGroup]="createForm" (submit)="createUser()" novalidate>
         <ion-item>
             <ion-label floating>Cel</ion-label>
             <ion-input formControlName="cel" type="number" [(ngModel)]="profile.cel"

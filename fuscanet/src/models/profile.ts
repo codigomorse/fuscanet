@@ -1,14 +1,14 @@
 export interface Profile{
-    nombre: String;
-    apellido: String;
+    nombre: string;
+    apellido: string;
     cedula: Number;
     cel: Number;
-    correo: String;
-    perfil: String;
-    genero: String;
-    especialidad: String;
-    ciudad: String;
-    sociedad: String;
+    correo: string;
+    perfil: string;
+    genero: string;
+    especialidad: string;
+    ciudad: string;
+    sociedad: string;
     foto: string;
     gremio: string;
     colegios: string;

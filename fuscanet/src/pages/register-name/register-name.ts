@@ -13,8 +13,7 @@ export class RegisterName {
   public createForm:FormGroup;
   constructor(public navCtrl: NavController, public navParams: NavParams,public formBuilder: FormBuilder) {
     this.createForm = formBuilder.group({
-      nombre:['', Validators.compose([Validators.required])],
-      apellido:['', Validators.compose([Validators.required])],
+      correo:['', Validators.compose([Validators.required])],
     });
   }
 

@@ -18,15 +18,10 @@
   <h6>Sus datos seran conservados de manera totalmente confidencial.</h6>
   <form [formGroup]="createForm" (submit)="siguiente()" novalidate>
       <ion-item>
-          <ion-label floating>Nombre</ion-label>
-          <ion-input formControlName="nombre" type="text" [(ngModel)]="profile.nombre"
-          [class.invalid]="!createForm.controls.nombre.valid && createForm.controls.nombre.dirty"></ion-input>
+          <ion-label floating>Correo</ion-label>
+          <ion-input formControlName="correo" type="text" [(ngModel)]="profile.correo"
+          [class.invalid]="!createForm.controls.correo.valid && createForm.controls.correo.dirty"></ion-input>
         </ion-item>
-        <ion-item>
-            <ion-label floating>Apellido</ion-label>
-            <ion-input formControlName="apellido" type="text" [(ngModel)]="profile.apellido"
-            [class.invalid]="!createForm.controls.apellido.valid && createForm.controls.apellido.dirty"></ion-input>
-          </ion-item>
         <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
             Siguiente
         </button>
