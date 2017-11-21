@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Profile } from '../../models/profile';
+import { RegisterCel } from '../register-cel/register-cel'
 
 @Component({
   selector: 'page-register-name',
@@ -19,9 +20,8 @@ export class RegisterName {
 
   ionViewDidLoad() {
     this.profile = this.navParams.get('profile');
-    console.log(this.profile);
   }
   siguiente(){
-    console.log(this.profile);
+    this.navCtrl.push(RegisterCel, {'profile': this.profile});
   }
 }

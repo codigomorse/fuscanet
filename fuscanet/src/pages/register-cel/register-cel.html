@@ -7,12 +7,25 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>registerCel</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+    <h1>Atencion:</h1>
+    <h6>Sus datos seran conservados de manera totalmente confidencial.</h6>
+    <form [formGroup]="createForm" (submit)="siguiente()" novalidate>
+        <ion-item>
+            <ion-label floating>Cel</ion-label>
+            <ion-input formControlName="cel" type="number" [(ngModel)]="profile.cel"
+            [class.invalid]="!createForm.controls.cel.valid && createForm.controls.cel.dirty"></ion-input>
+          </ion-item>
+          <h1>Atencion:</h1>
+          <h6>Sus datos se verificaran manualmente y se le informara cuando este habilitado su usuario.</h6>
+        <button ion-button block color="secondary" type="submit" [disabled]="!createForm.valid">
+            Solicitar
+          </button>
+    </form>
 </ion-content>
