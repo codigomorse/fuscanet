@@ -33,6 +33,8 @@ export class User {
   constructor(public platform: Platform,public alert: AlertController, private camera: Camera,public alertCtrl: AlertController,public formBuilder: FormBuilder,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     this.mypicref = firebase.storage().ref('/');
     this.createForm = formBuilder.group({
+      nombre:[''],
+      apellido:[''],
       email: [''],
       cel: [''],
       especialidad: [''],

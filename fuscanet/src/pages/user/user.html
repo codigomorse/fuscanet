@@ -13,6 +13,16 @@
       <ion-item>
           <img [src]="image" id="image" (click)="updatePhoto()" />
       </ion-item>
+
+      <ion-item>
+          <ion-label floating>Nombre</ion-label>
+          <ion-input formControlName="nombre" type="text" [(ngModel)]="profile.nombre"></ion-input>
+      </ion-item>  
+
+      <ion-item>
+          <ion-label floating>Apellido</ion-label>
+          <ion-input formControlName="apellido" type="text" [(ngModel)]="profile.apellido"></ion-input>
+      </ion-item>  
         <ion-item>
             <ion-label floating>Email</ion-label>
             <ion-input formControlName="email" type="email" [(ngModel)]="profile.correo"></ion-input>

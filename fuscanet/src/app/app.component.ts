@@ -12,7 +12,8 @@ import { User } from '../pages/user/user';
 import { AcercaDe } from '../pages/acerca-de/acerca-de';
 import { Contacto } from '../pages/contacto/contacto';
 import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardadas';
-
+import { Beneficios } from '../pages/beneficios/beneficios';
+ 
 @Component({
   templateUrl: 'app.html'
 })
@@ -36,6 +37,7 @@ export class MyApp {
       { title: 'Vademecum', component: Catalogo },
       { title: 'Acerca de', component: AcercaDe },
       { title: 'Contacto', component: Contacto },
+      { title: 'Beneficios', component: Beneficios },
     ];
     this.activePage = this.pages[0];
   }

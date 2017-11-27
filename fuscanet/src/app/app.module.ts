@@ -17,6 +17,7 @@ import { Contacto } from '../pages/contacto/contacto';
 import { RegistroContrasena } from '../pages/registro-contrasena/registro-contrasena';
 import { RegisterName } from '../pages/register-name/register-name';
 import { RegisterCel } from '../pages/register-cel/register-cel';
+import { Beneficios } from '../pages/beneficios/beneficios';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -40,7 +41,8 @@ import { Camera } from '@ionic-native/camera';
     Contacto,
     RegistroContrasena,
     RegisterName,
-    RegisterCel
+    RegisterCel,
+    Beneficios
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { Camera } from '@ionic-native/camera';
     Contacto,
     RegistroContrasena,
     RegisterName,
-    RegisterCel
+    RegisterCel,
+    Beneficios
   ],
   providers: [
     StatusBar,
