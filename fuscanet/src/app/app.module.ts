@@ -18,6 +18,7 @@ import { RegistroContrasena } from '../pages/registro-contrasena/registro-contra
 import { RegisterName } from '../pages/register-name/register-name';
 import { RegisterCel } from '../pages/register-cel/register-cel';
 import { Beneficios } from '../pages/beneficios/beneficios';
+import { Splash2 } from '../pages/splash2/splash2';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -42,7 +43,8 @@ import { Camera } from '@ionic-native/camera';
     RegistroContrasena,
     RegisterName,
     RegisterCel,
-    Beneficios
+    Beneficios,
+    Splash2
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { Camera } from '@ionic-native/camera';
     RegistroContrasena,
     RegisterName,
     RegisterCel,
-    Beneficios
+    Beneficios,
+    Splash2
   ],
   providers: [
     StatusBar,

@@ -7,7 +7,6 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { Profile } from '../../models/profile';
-
 /**
  * Generated class for the LoginPage page.
  *
