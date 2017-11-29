@@ -33,6 +33,8 @@ user = {} as User;
   }
 
   ionViewDidLoad() {
+    setTimeout(() => {
+  
     let loading = this.loadingCtrl.create({
       content: 'Autentificando'
     });
@@ -59,7 +61,7 @@ user = {} as User;
         }
       });
     
-
+    }, 2000);
   }
   goToResetPassword(){
     let prompt = this.alertCtrl.create({
