@@ -266,9 +266,9 @@ export class Home {
     return dev; 
   }
   showDetails(event){
-    let modal = this.modalCtrl.create(Eventdetails,  {'event': event});
+    let modal = this.navCtrl.push(Eventdetails,  {'event': event});
     //modal.onDidDismiss((data) => {console.log(data)});
-    modal.present();
+    //modal.present();
   }
   guardar(noticia){
     //console.log(noticia);
