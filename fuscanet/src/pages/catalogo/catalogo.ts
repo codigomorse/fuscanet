@@ -13,6 +13,7 @@ export class Catalogo {
   user={};
   items:any;
   labs:any;
+  principios:any;
   origProd:any;
   productos$: FirebaseListObservable<Product[]>;
   origLab:any;
@@ -56,6 +57,9 @@ export class Catalogo {
   initializeLabs() {
     this.labs= this.origLab;
   }
+  initializePrinc() {
+    this.principios= this.origPrincipio;
+  }
   getItems(ev: any) {
     // Reset items back to all of the items
     this.initializeItems();
@@ -70,6 +74,21 @@ export class Catalogo {
       })
     }
   }
+  getPrinc(ev: any) {
+    // Reset items back to all of the items
+    this.initializePrinc();
+
+    // set val to the value of the searchbar
+    let val = ev.target.value;
+    console.log(this.principios);
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.principios = this.principios.filter((prin) => {
+        return (prin.$key.toLowerCase().indexOf(val.toLowerCase()) > -1);
+      })
+    }
+    console.log(this.principios);
+  }
   getLabs(ev: any) {
     // Reset items back to all of the items
     this.initializeLabs();
@@ -77,7 +96,7 @@ export class Catalogo {
     // set val to the value of the searchbar
     let val = ev.target.value;
     
-    console.log(this.labs);
+    //console.log(this.labs);
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.labs = this.labs.filter((lab) => {
