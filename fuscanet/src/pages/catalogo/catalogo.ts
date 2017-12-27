@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable  } from 'angularfire2/datab
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Product } from '../../models/product';
 import { Itemdetails } from '../itemdetails/itemdetails';
+import { TasksService } from '../../providers/tasks-service';
 
 @Component({
   selector: 'page-catalogo',
@@ -11,6 +12,7 @@ import { Itemdetails } from '../itemdetails/itemdetails';
 })
 export class Catalogo {
   user={};
+  tasks: any[] = [];
   items:any;
   labs:any;
   principios:any;
@@ -21,11 +23,11 @@ export class Catalogo {
   origPrincipio:any;
   principio$: FirebaseListObservable<Product[]>;
 
-  constructor(public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,public tasksService: TasksService) {
     let loading = this.loadingCtrl.create({
       content: 'Cargando productos...'
     });
-  
+    
     loading.present();
 
     this.afAuth.authState.subscribe(data => {
@@ -89,6 +91,10 @@ export class Catalogo {
     }
     console.log(this.principios);
   }
+  ionViewDidLoad(){
+    this.getAllTasks();
+    console.log("ACA");
+  }
   getLabs(ev: any) {
     // Reset items back to all of the items
     this.initializeLabs();
@@ -110,6 +116,15 @@ export class Catalogo {
     //modal.onDidDismiss((data) => {console.log(data)});
     modal.present();
     
+  }
+  getAllTasks(){
+    this.tasksService.getAll()
+    .then(tasks => {
+      this.tasks = tasks;
+    })
+    .catch( error => {
+      console.error( error );
+    });
   }
 
 }
