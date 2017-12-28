@@ -7,20 +7,30 @@ import { Product } from '../../models/product';
   templateUrl: 'labdetails.html',
 })
 export class Labdetails {
-  product:Dictionary;
+  lab:Dictionary;
   titulo;
   datos;
+  origProd:any;
+
   constructor(public navCtrl: NavController,public viewCtrl:ViewController, public navParams: NavParams) {
-    this.product=this.navParams.get('product');
-    console.log(this.product);
-    this.titulo=this.product.$key;
+    this.lab=this.navParams.get('lab');
+    console.log(this.lab);
+    console.log(this.lab.$key);
+    this.titulo=this.lab.$key;
+    this.origProd=this.navParams.get('origProd');
+    console.log(this.origProd);
+    this.origProd=this.origProd.filter((product)=>{
+      //console.log(product.Laboratorio);
+      return product.Laboratorio.startsWith(this.lab.$key);
+    });
+    console.log(this.origProd);
   }
 
   closeModal(){
     this.viewCtrl.dismiss();
   }
   keys() : Array<string> {
-    return Object.keys(this.product);
+    return Object.keys(this.lab);
   }
   
 }

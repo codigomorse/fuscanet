@@ -112,8 +112,8 @@ export class Catalogo {
     modal.present();
     
   }
-  labClick(product){
-    let modal = this.modalCtrl.create(Labdetails,  {'product': product});
+  labClick(lab){
+    let modal = this.modalCtrl.create(Labdetails,  {'lab': lab, 'origProd': this.origProd});
     //modal.onDidDismiss((data) => {console.log(data)});
     modal.present();
     
