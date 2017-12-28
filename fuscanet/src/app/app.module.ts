@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { Catalogo } from '../pages/catalogo/catalogo';
 import { User } from '../pages/user/user';
 import { Itemdetails } from '../pages/itemdetails/itemdetails';
+import { Labdetails } from '../pages/labdetails/labdetails';
 import { Eventdetails } from '../pages/eventdetails/eventdetails';
 import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardadas';
 import { AcercaDe } from '../pages/acerca-de/acerca-de';
@@ -42,7 +43,8 @@ import { Camera } from '@ionic-native/camera';
     RegistroContrasena,
     RegisterName,
     RegisterCel,
-    Beneficios
+    Beneficios,
+    Labdetails
   ],
   imports: [
     BrowserModule,
@@ -68,7 +70,8 @@ import { Camera } from '@ionic-native/camera';
     RegistroContrasena,
     RegisterName,
     RegisterCel,
-    Beneficios
+    Beneficios,
+    Labdetails
   ],
   providers: [
     StatusBar,

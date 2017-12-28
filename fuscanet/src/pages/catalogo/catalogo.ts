@@ -4,6 +4,7 @@ import { AngularFireDatabase, FirebaseListObservable  } from 'angularfire2/datab
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Product } from '../../models/product';
 import { Itemdetails } from '../itemdetails/itemdetails';
+import { Labdetails } from '../labdetails/labdetails';
 
 @Component({
   selector: 'page-catalogo',
@@ -111,5 +112,10 @@ export class Catalogo {
     modal.present();
     
   }
-
+  labClick(product){
+    let modal = this.modalCtrl.create(Labdetails,  {'product': product});
+    //modal.onDidDismiss((data) => {console.log(data)});
+    modal.present();
+    
+  }
 }
