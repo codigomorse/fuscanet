@@ -22,8 +22,8 @@
     </div>
     <p id="titulo">Productos</p>
     <ion-list>
-      <ion-item *ngFor="let product of origProd | slice:0:10; let i=index">
-        <h3 *ngIf="i<11" (click)=productClick(product)>{{product.$key}}</h3>
+      <ion-item *ngFor="let product of origProd">
+        <h3 id="lista" (click)=productClick(product)>{{product.$key}}</h3>
       </ion-item>
     </ion-list> 
   </ion-content>
