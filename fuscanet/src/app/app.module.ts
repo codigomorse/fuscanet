@@ -19,6 +19,7 @@ import { RegistroContrasena } from '../pages/registro-contrasena/registro-contra
 import { RegisterName } from '../pages/register-name/register-name';
 import { RegisterCel } from '../pages/register-cel/register-cel';
 import { Beneficios } from '../pages/beneficios/beneficios';
+import { TasksService } from '../providers/tasks-service';
 
 import { AngularFireModule } from 'angularfire2';
 import {FIREBASE_CONFIG} from './app.firebase.config';
@@ -27,6 +28,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import {NgCalendarModule} from 'ionic2-calendar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { Camera } from '@ionic-native/camera';
+import { SQLite } from '@ionic-native/sqlite';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,9 @@ import { Camera } from '@ionic-native/camera';
   providers: [
     StatusBar,
     SplashScreen,
+    SQLite,
     Camera,
+    TasksService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -13,6 +13,9 @@ import { AcercaDe } from '../pages/acerca-de/acerca-de';
 import { Contacto } from '../pages/contacto/contacto';
 import { NoticiasGuardadas } from '../pages/noticias-guardadas/noticias-guardadas';
 import { Beneficios } from '../pages/beneficios/beneficios';
+import { SQLite } from '@ionic-native/sqlite';
+import { TasksService } from '../providers/tasks-service';
+
  
 @Component({
   templateUrl: 'app.html'
@@ -25,7 +28,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,public tasksService: TasksService, public splashScreen: SplashScreen, public sqlite: SQLite) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -47,6 +50,7 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      this.createDatabase();
       this.splashScreen.hide();
     });
   }
@@ -59,5 +63,22 @@ export class MyApp {
   }
   checkActive(page){
     //return page == this.activePage;
+  }
+  private createDatabase(){
+    this.sqlite.create({
+      name: 'data.db',
+      location: 'default' // the location field is required
+    })
+    .then((db) => {
+      this.tasksService.setDatabase(db);
+      return this.tasksService.createTable();
+    })
+    .then(() =>{
+      this.splashScreen.hide();
+      this.rootPage = 'HomePage';
+    })
+    .catch(error =>{
+      console.error(error);
+    });
   }
 }
