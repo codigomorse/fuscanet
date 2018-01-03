@@ -10,6 +10,7 @@ import { Eventdetails } from '../eventdetails/eventdetails';
 import { User } from '../user/user';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-home',

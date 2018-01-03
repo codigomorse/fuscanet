@@ -27,6 +27,8 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import {NgCalendarModule} from 'ionic2-calendar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { Camera } from '@ionic-native/camera';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import { Camera } from '@ionic-native/camera';
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     NgCalendarModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

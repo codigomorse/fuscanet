@@ -5,6 +5,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { Product } from '../../models/product';
 import { Itemdetails } from '../itemdetails/itemdetails';
 import { Labdetails } from '../labdetails/labdetails';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-catalogo',
@@ -22,28 +23,47 @@ export class Catalogo {
   origPrincipio:any;
   principio$: FirebaseListObservable<Product[]>;
 
-  constructor(public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private storage: Storage,public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
     let loading = this.loadingCtrl.create({
       content: 'Cargando productos...'
     });
   
     loading.present();
 
+    //this.bajarProductos();
+    this.usarDatosLocales();
+
+    loading.dismiss();
+    
+  }
+  bajarProductos(){
     this.afAuth.authState.subscribe(data => {
       this.user = data;
       //console.log(this.user);  
       this.productos$ = this.afDb.list('product');
       this.productos$.subscribe(data => {
         this.origProd=data;
+        this.storage.set('products',this.origProd);
+        // storage.get('products').then((val) => {
+        //  console.log('productos ',val);
+        // });
         this.laboratorios$ = this.afDb.list('laboratory');
         this.laboratorios$.subscribe(lab =>{
             this.origLab=lab;
+            this.storage.set('laboratory',this.origLab);
+            // storage.get('laboratory').then((lab) => {
+            //  console.log('labs ',lab);
+            // });
             //loading.dismiss();
             //console.log(this.origLab);
             this.principio$ = this.afDb.list('principio_activo');
             this.principio$.subscribe(prin =>{
               this.origPrincipio=prin;
-              loading.dismiss();
+              this.storage.set('principio_activo',this.origPrincipio);
+              // storage.get('principio_activo').then((prin) => {
+              //  console.log('principios',prin);
+              // });
+              
             })
           }
         )
@@ -51,6 +71,13 @@ export class Catalogo {
         //loading.dismiss();
       });
      }); 
+  }
+  usarDatosLocales(){
+        this.storage.get('products').then((val) => {
+          //console.log(val);
+          this.origProd=val;
+          console.log(this.origProd);
+        });
   }
   initializeItems() {
     this.items= this.origProd;
@@ -71,6 +98,8 @@ export class Catalogo {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
+        console.log(item.$key);
+        console.log(val);
         return (item.$key.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
