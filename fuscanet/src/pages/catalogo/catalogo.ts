@@ -24,26 +24,16 @@ export class Catalogo {
   principio$: FirebaseListObservable<Product[]>;
 
   constructor(private storage: Storage,public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
+    //me fijo si hay productos
+    storage.get('principio_activo').then((prin) => {
+        this.usarDatosLocales();
+    });
+  }
+  bajarProductos(){
     let loading = this.loadingCtrl.create({
       content: 'Cargando productos...'
     });
-  
     loading.present();
-
-    //me fijo si hay productos
-    storage.get('principio_activo').then((prin) => {
-      console.log('principios',prin);
-      if(prin){
-        this.usarDatosLocales();
-      }else{
-        this.bajarProductos();
-      }
-    });
-    setTimeout(() => {
-      loading.dismiss();
-    }, 2000);    
-  }
-  bajarProductos(){
     this.afAuth.authState.subscribe(data => {
       this.user = data;
       //console.log(this.user);  
@@ -87,7 +77,7 @@ export class Catalogo {
               // storage.get('principio_activo').then((prin) => {
               //  console.log('principios',prin);
               // });
-              
+              loading.dismiss();
             })
           }
         )
@@ -101,6 +91,12 @@ export class Catalogo {
           //console.log('productos locales',val);
           this.origProd=val;
           //console.log('para filtrar ',this.origProd);
+          if(this.origProd[0].nombre){
+            //alert(this.origProd[0].nombre)
+          }else{
+            //alert('no hay nada');
+            this.bajarProductos();
+          }
         });
         this.storage.get('laboratory').then((val) => {
           //console.log('productos locales',val);
@@ -112,6 +108,7 @@ export class Catalogo {
           this.origPrincipio=val;
           //console.log('para filtrar ',this.origProd);
         });
+        
   }
   initializeItems() {
     this.items= this.origProd;
