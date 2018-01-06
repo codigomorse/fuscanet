@@ -96,9 +96,9 @@ export class Catalogo {
           this.origProd=val;
           //console.log('para filtrar ',this.origProd);
           if(this.origProd[0].nombre){
-            alert(this.origProd[0].nombre)
+            //alert(this.origProd[0].nombre)
           }else{
-            alert('no hay nada');
+            //alert('no hay nada');
             this.bajarProductos();
           }
         });
