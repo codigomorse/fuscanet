@@ -12,21 +12,21 @@
   <ion-searchbar (ionInput)="getItems($event)" placeholder="Buscar" class="coso"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let product of items | slice:0:10; let i=index">
-    	<h3 *ngIf="i<11" (click)=productClick(product)>{{product.$key}}</h3>
+    	<h3 *ngIf="i<11" (click)=productClick(product)>{{product.nombre}}</h3>
 		</ion-item>
   </ion-list>
   <h2> Buscar por laboratorio</h2>
   <ion-searchbar (ionInput)="getLabs($event)" placeholder="Buscar" class="coso"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let product of labs | slice:0:10; let i=index">
-    	<h3 *ngIf="i<11" (click)=labClick(product)>{{product.$key}}</h3>
+    	<h3 *ngIf="i<11" (click)=labClick(product)>{{product.nombre}}</h3>
 		</ion-item>
   </ion-list>
   <h2> Buscar por principio activo</h2>
   <ion-searchbar (ionInput)="getPrinc($event)" placeholder="Buscar" class="coso"></ion-searchbar>
   <ion-list>
     <ion-item *ngFor="let product of principios | slice:0:10; let i=index">
-    	<h3 *ngIf="i<11" (click)=productClick(product)>{{product.$key}}</h3>
+    	<h3 *ngIf="i<11" (click)=productClick(product)>{{product.nombre}}</h3>
 		</ion-item>
   </ion-list>
   <div

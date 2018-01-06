@@ -17,12 +17,12 @@ export class Labdetails {
     this.lab=this.navParams.get('lab');
     //console.log(this.lab);
     //console.log(this.lab.$key);
-    this.titulo=this.lab.$key;
+    this.titulo=this.lab.nombre;
     this.origProd=this.navParams.get('origProd');
     //console.log(this.origProd);
     this.origProd=this.origProd.filter((product)=>{
       //console.log(product.Laboratorio);
-      return product.Laboratorio.startsWith(this.lab.$key);
+      return product.Laboratorio.startsWith(this.lab.nombre);
     });
     //console.log(this.origProd);
   }

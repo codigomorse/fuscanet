@@ -30,11 +30,18 @@ export class Catalogo {
   
     loading.present();
 
-    this.bajarProductos();
-    //this.usarDatosLocales();
-
-    loading.dismiss();
-    
+    //me fijo si hay productos
+    storage.get('principio_activo').then((prin) => {
+      console.log('principios',prin);
+      if(prin){
+        this.usarDatosLocales();
+      }else{
+        this.bajarProductos();
+      }
+    });
+    setTimeout(() => {
+      loading.dismiss();
+    }, 2000);    
   }
   bajarProductos(){
     this.afAuth.authState.subscribe(data => {
@@ -91,9 +98,19 @@ export class Catalogo {
   }
   usarDatosLocales(){
         this.storage.get('products').then((val) => {
-          //console.log(val);
+          //console.log('productos locales',val);
           this.origProd=val;
-          //console.log(this.origProd);
+          //console.log('para filtrar ',this.origProd);
+        });
+        this.storage.get('laboratory').then((val) => {
+          //console.log('productos locales',val);
+          this.origLab=val;
+          //console.log('para filtrar ',this.origProd);
+        });
+        this.storage.get('principio_activo').then((val) => {
+          //console.log('productos locales',val);
+          this.origPrincipio=val;
+          //console.log('para filtrar ',this.origProd);
         });
   }
   initializeItems() {
@@ -115,7 +132,7 @@ export class Catalogo {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        //console.log(item.$key);
+        //console.log(item.nombre);
         //console.log(val);
         return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
