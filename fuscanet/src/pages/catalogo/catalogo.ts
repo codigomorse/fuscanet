@@ -30,8 +30,8 @@ export class Catalogo {
   
     loading.present();
 
-    //this.bajarProductos();
-    this.usarDatosLocales();
+    this.bajarProductos();
+    //this.usarDatosLocales();
 
     loading.dismiss();
     
@@ -43,13 +43,25 @@ export class Catalogo {
       this.productos$ = this.afDb.list('product');
       this.productos$.subscribe(data => {
         this.origProd=data;
+        console.log('fb ',this.origProd);
+        //console.log(JSON.stringify(this.origProd));
+        this.origProd.forEach(element => {
+          element.nombre = element.$key;
+          //console.log(element.$key);
+          //console.log(element.nombre);
+        });
         this.storage.set('products',this.origProd);
-        // storage.get('products').then((val) => {
-        //  console.log('productos ',val);
-        // });
+        this.storage.get('products').then((val) => {
+         console.log('productos ',val);
+        });
         this.laboratorios$ = this.afDb.list('laboratory');
         this.laboratorios$.subscribe(lab =>{
             this.origLab=lab;
+            this.origLab.forEach(element => {
+              element.nombre = element.$key;
+              //console.log(element.$key);
+              //console.log(element.nombre);
+            });
             this.storage.set('laboratory',this.origLab);
             // storage.get('laboratory').then((lab) => {
             //  console.log('labs ',lab);
@@ -59,6 +71,11 @@ export class Catalogo {
             this.principio$ = this.afDb.list('principio_activo');
             this.principio$.subscribe(prin =>{
               this.origPrincipio=prin;
+              this.origPrincipio.forEach(element => {
+                element.nombre = element.$key;
+                //console.log(element.$key);
+                //console.log(element.nombre);
+              });
               this.storage.set('principio_activo',this.origPrincipio);
               // storage.get('principio_activo').then((prin) => {
               //  console.log('principios',prin);
@@ -76,7 +93,7 @@ export class Catalogo {
         this.storage.get('products').then((val) => {
           //console.log(val);
           this.origProd=val;
-          console.log(this.origProd);
+          //console.log(this.origProd);
         });
   }
   initializeItems() {
@@ -98,9 +115,9 @@ export class Catalogo {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.items = this.items.filter((item) => {
-        console.log(item.$key);
-        console.log(val);
-        return (item.$key.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        //console.log(item.$key);
+        //console.log(val);
+        return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -114,7 +131,7 @@ export class Catalogo {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.principios = this.principios.filter((prin) => {
-        return (prin.$key.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (prin.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
     console.log(this.principios);
@@ -130,7 +147,7 @@ export class Catalogo {
     // if the value is an empty string don't filter the items
     if (val && val.trim() != '') {
       this.labs = this.labs.filter((lab) => {
-        return (lab.$key.toLowerCase().indexOf(val.toLowerCase()) > -1);
+        return (lab.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
       })
     }
   }
@@ -147,4 +164,5 @@ export class Catalogo {
     modal.present();
     
   }
+  
 }
