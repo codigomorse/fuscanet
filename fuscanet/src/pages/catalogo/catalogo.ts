@@ -87,14 +87,18 @@ export class Catalogo {
      }); 
   }
   usarDatosLocales(){
+    let loading = this.loadingCtrl.create({
+      content: 'Cargando productos...'
+    });
+    loading.present();
         this.storage.get('products').then((val) => {
           //console.log('productos locales',val);
           this.origProd=val;
           //console.log('para filtrar ',this.origProd);
           if(this.origProd[0].nombre){
-            //alert(this.origProd[0].nombre)
+            alert(this.origProd[0].nombre)
           }else{
-            //alert('no hay nada');
+            alert('no hay nada');
             this.bajarProductos();
           }
         });
@@ -107,6 +111,7 @@ export class Catalogo {
           //console.log('productos locales',val);
           this.origPrincipio=val;
           //console.log('para filtrar ',this.origProd);
+          loading.dismiss();
         });
         
   }
