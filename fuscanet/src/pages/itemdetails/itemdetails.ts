@@ -14,7 +14,7 @@ export class Itemdetails {
   constructor(public navCtrl: NavController,public viewCtrl:ViewController, public navParams: NavParams) {
     this.product=this.navParams.get('product');
     console.log(this.product);
-    this.titulo=this.product.$key;
+    this.titulo=this.product.nombre;
   }
 
   closeModal(){
