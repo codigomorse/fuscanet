@@ -24,10 +24,7 @@ export class Catalogo {
   principio$: FirebaseListObservable<Product[]>;
 
   constructor(private storage: Storage,public loadingCtrl: LoadingController,public alertCtrl: AlertController,private modalCtrl:ModalController, private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams) {
-    //me fijo si hay productos
-    storage.get('principio_activo').then((prin) => {
-        this.usarDatosLocales();
-    });
+    this.usarDatosLocales();
   }
   bajarProductos(){
     let loading = this.loadingCtrl.create({
@@ -49,7 +46,7 @@ export class Catalogo {
         });
         this.storage.set('products',this.origProd);
         this.storage.get('products').then((val) => {
-         console.log('productos ',val);
+         //console.log('productos ',val);
         });
         this.laboratorios$ = this.afDb.list('laboratory');
         this.laboratorios$.subscribe(lab =>{
@@ -95,10 +92,11 @@ export class Catalogo {
           //console.log('productos locales',val);
           this.origProd=val;
           //console.log('para filtrar ',this.origProd);
-          if(this.origProd[0].nombre){
-            //alert(this.origProd[0].nombre)
-          }else{
-            //alert('no hay nada');
+          try {
+            this.origProd[0].nombre;
+            alert('usando productos locales');       
+          } catch (error) {
+            alert('bajando productos de firebase');
             this.bajarProductos();
           }
         });
