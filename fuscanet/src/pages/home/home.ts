@@ -30,8 +30,8 @@ export class Home {
   profile = {} as Profile;
   showNoticia=true;
   btnEventoColor: string = '#f4f4f4';
-  btnNoticiaColor: string = '#488aff';
-  btnEventoTextColor: string = '#488aff';
+  btnNoticiaColor: string = '#00C25F';
+  btnEventoTextColor: string = '#00C25F';
   btnNoticiaTextColor: string = '#f4f4f4';
   constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public navCtrl: NavController, public navParams: NavParams) {
   }
@@ -342,15 +342,15 @@ export class Home {
   verNoticia(){
     this.showNoticia = true;
     this.btnEventoColor = "#f4f4f4";
-    this.btnNoticiaColor = "#488aff";
-    this.btnEventoTextColor="#488aff";
+    this.btnNoticiaColor = "#00C25F";
+    this.btnEventoTextColor="#00C25F";
     this.btnNoticiaTextColor="#f4f4f4";
   }
   verEvento(){
     this.showNoticia = false;
-    this.btnEventoColor = "#488aff";
+    this.btnEventoColor = "#00C25F";
     this.btnNoticiaColor = "#f4f4f4";
     this.btnEventoTextColor="#f4f4f4";
-    this.btnNoticiaTextColor="#488aff";
+    this.btnNoticiaTextColor="#00C25F";
   }
 }

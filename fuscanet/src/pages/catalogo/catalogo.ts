@@ -45,9 +45,9 @@ export class Catalogo {
           //console.log(element.nombre);
         });
         this.storage.set('products',this.origProd);
-        this.storage.get('products').then((val) => {
+        //this.storage.get('products').then((val) => {
          //console.log('productos ',val);
-        });
+        //});
         this.laboratorios$ = this.afDb.list('laboratory');
         this.laboratorios$.subscribe(lab =>{
             this.origLab=lab;
