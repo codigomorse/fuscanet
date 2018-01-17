@@ -23,21 +23,21 @@ export class MyApp {
   rootPage: any = LoginPage;
   //activePage: any;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, icon: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Inicio', component: Home },
-      { title: 'Perfil', component: User },
-      { title: 'Calendario', component: ListPage },
-      { title: 'Noticias guardadas', component: NoticiasGuardadas },
-      { title: 'Vademecum', component: Catalogo },
-      { title: 'Acerca de', component: AcercaDe },
-      { title: 'Contacto', component: Contacto },
-      { title: 'Beneficios', component: Beneficios },
+      { title: 'Inicio', component: Home, icon:'ios-home' },
+      { title: 'Perfil', component: User, icon:'md-person'},
+      { title: 'Calendario', component: ListPage, icon:'md-calendar' },
+      { title: 'Noticias guardadas', component: NoticiasGuardadas, icon:'ios-archive' },
+      { title: 'Vademecum', component: Catalogo, icon:'md-medkit' },
+      { title: 'Acerca de', component: AcercaDe, icon:'md-help-circle' },
+      { title: 'Contacto', component: Contacto, icon:'md-call' },
+      { title: 'Beneficios', component: Beneficios, icon:'md-bulb' },
     ];
     //this.activePage = this.pages[0];
   }
