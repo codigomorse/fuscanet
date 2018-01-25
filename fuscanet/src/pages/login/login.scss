@@ -1,3 +1,54 @@
 page-login {
-
+    .content{
+        background-color: #00C25F;
+        //color:#fff;
+        font-weight: bold;
+        }
+        #coso{
+            color:#fff;
+            background-color: #86EDAB;
+            border-radius: 75px 75px 0px 0px;
+            -moz-border-radius: 75px 75px 0px 0px;
+            -webkit-border-radius: 75px 75px 0px 0px;
+        }
+        #coso2{
+            margin-top: 10px;
+            color:#fff;
+            background-color: #86EDAB;
+            border-radius: 0px 0px 75px 75px;
+            -moz-border-radius: 0px 0px 75px 75px;
+            -webkit-border-radius: 0px 0px 75px 75px;
+        }
+        #lbl{
+            color:#fff;
+            background-color: #86EDAB;
+            text-align: center;
+        }
+        #imp{
+            width: 80%;
+        }
+        #sub{
+            margin-top: 20px;
+            background-color: #fff;
+            border-radius: 75px 75px 75px 75px;
+            -moz-border-radius: 75px 75px 75px 75px;
+            -webkit-border-radius: 75px 75px 75px 75px;
+            color: #000000;
+        }
+        #sup1{
+            margin-top: 20px;
+            color:#fff;
+            background-color: #5CCACF;
+            border-radius: 75px 75px 0px 0px;
+            -moz-border-radius: 75px 75px 0px 0px;
+            -webkit-border-radius: 75px 75px 0px 0px;
+        }
+        #inf1{
+            margin-top: 10px;
+            color:#fff;
+            background-color: #86EDAB;
+            border-radius: 0px 0px 75px 75px;
+            -moz-border-radius: 0px 0px 75px 75px;
+            -webkit-border-radius: 0px 0px 75px 75px;
+        }
 }

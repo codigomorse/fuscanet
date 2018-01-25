@@ -1,5 +1,20 @@
 page-catalogo {
     .coso{
-        background:#488aff; 
+        background:#4dd880;
+        border-radius: 65px 65px 65px 65px;
+        -moz-border-radius: 65px 65px 65px 65px;
+        -webkit-border-radius: 65px 65px 65px 65px;
+        border: 10px solid #4dd880;
+        margin-top: 8%;
+        margin-left: 5%;
+        width: 90%;
     }
+    h2{
+        margin-left: 45px;
+    }
+    .content{
+        background-color: #00C25F;
+        //color:#fff;
+        font-weight: bold;
+        }
 }

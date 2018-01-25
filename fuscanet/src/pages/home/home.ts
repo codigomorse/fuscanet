@@ -120,25 +120,26 @@ export class Home {
     //console.log("click");
   }
   asistir(event){
-    //console.log("click añadir");
-    //console.log(this.eventSource);
+    console.log("click añadir");
+    //console.log('event souce ',this.eventSource);
     this.formatTime(this.eventSource);
-    //console.log(event.title);
+    console.log('click en ',event);
     try{
     let asiste = this.asiste(event);
     //console.log(asiste);
     if(asiste){
       alert("ya asistiras a este evento");
     }else{
-      this.eventSource.push( event);
+      this.eventSource.push(event);
       //alert("se agrega el evento")
-      //console.log(this.eventSource);
+      console.log('event source despues',this.eventSource);
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
         this.events.subscribe(data => this.creoLocal(data));
       })
     }}catch(e){
       this.eventSource = [];
+      console.log('event source ',this.eventSource);
       this.eventSource.push(event);
       //alert("se agrega el evento")
       //console.log(this.eventSource);
@@ -216,14 +217,14 @@ export class Home {
       this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se elimino correctamente"));
       this.events.subscribe(data => this.creoLocal(data));
     })
-    //this.events.subscribe(data => this.creoLocal(data));
+    this.events.subscribe(data => this.creoLocal(data));
   }
   getEventPosition(event){
     let cont =0;
     let dev = -1;
     this.eventSource.forEach(element => {
-      element.startTime= moment(event.startTime).format();
-      element.endTime= moment(event.endTime).format();
+      element.startTime= moment(element.startTime).format();
+      element.endTime= moment(element.endTime).format();
       //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
       if(element.title==event.title && element.startTime==event.startTime){
         //console.log(cont);
@@ -328,15 +329,18 @@ export class Home {
   }
   asiste(event){
     let asistira = false;
-    try{this.eventSource.forEach(element => {
-      element.startTime= moment(event.startTime).format();
-      element.endTime= moment(event.endTime).format();
-        //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
+    //console.log('event sourcewtf ',this.eventSource);
+    try{
+      this.eventSource.forEach(element => {
+      element.startTime= moment(element.startTime).format();
+      element.endTime= moment(element.endTime).format();
+        console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
         if(element.title==event.title && element.startTime==event.startTime){
           asistira = true;
         }
-    });}catch(e){}
-    //console.log('retorna '+asistira);
+      });
+      console.log('retorna '+asistira);
+    }catch(e){}
     return asistira;
   }
   verNoticia(){
