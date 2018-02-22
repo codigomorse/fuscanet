@@ -47,7 +47,7 @@ export class Home {
           if(!this.profile.nombre){
             let alert = this.alert.create({
               title: 'Aviso',
-              subTitle: 'Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!'
+              subTitle: 'Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al inicio la aplicacion \nGracias!!!'
             });
             alert.present();
             //alert('Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!')
