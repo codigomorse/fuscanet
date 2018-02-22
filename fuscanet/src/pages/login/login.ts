@@ -111,7 +111,11 @@ user = {} as User;
           //console.log(this.profile);
           if(this.profile){
             if(this.profile.perfil=="nuevo"){
-              alert("Su usuario se encuentra pendiente de aprobacion");
+              let alert = this.alertCtrl.create({
+                title: 'Aviso',
+                subTitle: 'Su usuario se encuentra pendiente de aprobacion'
+              });
+              alert.present();
             }else{
               this.navCtrl.setRoot('Home');  
             }

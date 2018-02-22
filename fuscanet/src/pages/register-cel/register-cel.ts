@@ -59,7 +59,12 @@ export class RegisterCel {
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
       console.log(this.profile);
-        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => {alert('Muchas gracias por completar su registro junto a yo medico.\nLuego de verificar su informacion recibira un mensaje para poder acceder a la aplicacion');
+        this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => {
+            let alert = this.alertCtrl.create({
+              title: 'Aviso',
+              subTitle: 'Muchas gracias por completar su registro junto a yo medico.\nLuego de verificar su informacion recibira un mensaje para poder acceder a la aplicacion'
+            });
+            alert.present();
         this.navCtrl.push(LoginPage);
       });
       })

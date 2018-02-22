@@ -45,7 +45,12 @@ export class Home {
       this.afDb.object(`/profile/${data.uid}`).subscribe(_data => {
           this.profile = _data;
           if(!this.profile.nombre){
-            alert('Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!')
+            let alert = this.alert.create({
+              title: 'Aviso',
+              subTitle: 'Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!'
+            });
+            alert.present();
+            //alert('Bienvenido!! \nPor favor complete los campos de su perfil para dejar de ver este cartel al iniciar la aplicacion \nGracias!!!')
             this.navCtrl.setRoot(User);            
           }
           //console.log(this.profile);

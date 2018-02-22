@@ -6,6 +6,7 @@ import { Product } from '../../models/product';
 import { Itemdetails } from '../itemdetails/itemdetails';
 import { Labdetails } from '../labdetails/labdetails';
 import { Storage } from '@ionic/storage';
+import { Title } from '@angular/platform-browser/src/browser/title';
 
 @Component({
   selector: 'page-catalogo',
@@ -94,9 +95,18 @@ export class Catalogo {
           //console.log('para filtrar ',this.origProd);
           try {
             this.origProd[0].nombre;
-            alert('usando productos locales');       
+            let alert = this.alertCtrl.create({
+              title: 'Aviso',
+              subTitle: 'Usando productos locales'
+            });
+            alert.present();       
           } catch (error) {
-            alert('bajando productos de firebase');
+            this.origProd[0].nombre;
+            let alert = this.alertCtrl.create({
+              title: 'Aviso',
+              subTitle: 'Actualizando base de productos'
+            });
+            alert.present();
             this.bajarProductos();
           }
         });
