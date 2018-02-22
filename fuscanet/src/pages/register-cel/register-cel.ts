@@ -18,7 +18,7 @@ export class RegisterCel {
   public createForm:FormGroup;
   constructor(public loadingCtrl: LoadingController,public alertCtrl: AlertController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,public formBuilder: FormBuilder) {
     this.createForm = formBuilder.group({
-      cel:['',Validators.compose([Validators.minLength(9) ,Validators.required])],
+      cel:['',Validators.compose([Validators.minLength(9) ,Validators.required,Validators.maxLength(9),Validators.required])],
     });
   }
 
