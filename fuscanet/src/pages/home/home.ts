@@ -78,7 +78,7 @@ export class Home {
         //console.log(_data);
         try{
         _data.forEach(element => {
-          element.startTime = new Date(element.startTime);
+          element.startTime = moment(new Date(element.startTime)).format('L');
           element.endTime = new Date(element.endTime);
           //console.log(element);
         });
@@ -174,6 +174,7 @@ export class Home {
       }else{element.voy = true}
         //console.log(this.eventsToShow);
         //console.log(element);
+        //element.startTime = moment(element.startTime).format('L');
         this.eventsToShow.push(element);
     });
   }
@@ -191,6 +192,7 @@ export class Home {
       }else{element.voy = true}
         //console.log(this.noticiasToShow);
         //console.log(element);
+        //element.startTime = moment(element.startTime).format('L');
         this.noticiasToShow.push(element);
     });
   }

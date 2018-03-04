@@ -19,11 +19,11 @@
       <ion-card *ngFor="let event of eventsToShow " >
           
           <ion-card-content>
+            <img src={{event.foto}} class="foto"/>
+            <p class="fecha" class="resumen">{{event.startTime}}</p>
             <ion-card-title class="titulo">
               {{event.title}}
             </ion-card-title>
-            <img src={{event.foto}} class="foto"/>
-            <p class="fecha">{{event.startTime}}</p>
             <p class="resumen">
               {{event.texto}}
             </p>
@@ -54,12 +54,11 @@
     <ion-card *ngFor="let noticia of noticiasToShow  " >
         
         <ion-card-content>
-            <ion-card-title class="titulo">
-                {{noticia.title}}
-              </ion-card-title>
             <img src={{noticia.foto}} class="foto"/>
-          
-          <p class="fecha">{{noticia.startTime}}</p>
+            <p class="fecha" class="resumen">{{noticia.startTime}}</p>
+            <ion-card-title class="titulo">
+              {{noticia.title}}
+            </ion-card-title>
           <p class="resumen">
             {{noticia.texto}}
           </p>

@@ -111,4 +111,7 @@ exitApp(){
     });
     return uuid;
   }
+  isReadonly() {
+    return this.isReadonly;   //return true/false 
+  }
 }
