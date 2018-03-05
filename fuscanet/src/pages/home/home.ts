@@ -24,6 +24,7 @@ export class Home {
   eventsToShow: Event[];
   noticiaList: Event[];
   noticiasToShow: Event[];
+  noticiasLeidas: Event[];
   noticiaLike: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
@@ -275,7 +276,19 @@ export class Home {
     return dev; 
   }
   showDetails(event){
-    let modal = this.navCtrl.push(Eventdetails,  {'event': event});
+    console.log(event.id);
+    console.log(this.user.uid);
+    this.noticiasLeidas=[];
+    this.noticiasLeidas.push(this.user.uid);
+    console.log(this.noticiasLeidas);
+
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
+      //this.noticias.subscribe(data => this.creoLocalNoticias(data));
+    })
+
+    //let modal = this.navCtrl.push(Eventdetails,  {'event': event});
+    
     //modal.onDidDismiss((data) => {console.log(data)});
     //modal.present();
   }
@@ -322,9 +335,9 @@ export class Home {
   }
   desvalorar(noticia){
     noticia.like= false;
-    console.log(noticia);
+    //console.log(noticia);
     let posNot = this.getNoticiaPositionLike(noticia);
-    console.log(posNot);
+    //console.log(posNot);
      if(posNot != -1){
        this.noticiaLike.splice(posNot, 1);
      }
@@ -341,12 +354,12 @@ export class Home {
       this.eventSource.forEach(element => {
       element.startTime= moment(element.startTime).format();
       element.endTime= moment(element.endTime).format();
-        console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
+        //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
         if(element.title==event.title && element.startTime==event.startTime){
           asistira = true;
         }
       });
-      console.log('retorna '+asistira);
+      //console.log('retorna '+asistira);
     }catch(e){}
     return asistira;
   }
