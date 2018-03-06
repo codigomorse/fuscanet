@@ -303,7 +303,7 @@ export class Home {
         //this.afDb.object(`noticiaLeida/${event.id}`).set(noticiasLeidas);
         //this.afDb.database.ref(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
         //llevo al detalle
-        //let modal = this.navCtrl.push(Eventdetails,  {'event': event});
+        let modal = self.navCtrl.push(Eventdetails,  {'event': event});
       });
     })
     
