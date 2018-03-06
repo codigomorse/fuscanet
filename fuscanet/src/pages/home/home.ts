@@ -276,11 +276,10 @@ export class Home {
     return dev; 
   }
   showDetails(event){
+    var self = this;
     this.afAuth.authState.take(1).subscribe(auth => {
       //console.log(event.id);
       //console.log(auth.uid);
-      //tengo q fijarme si existen datos
-      let guardar = false;
       this.afDb.database.ref(`noticiaLeida/${event.id}`).once('value').then(function(snapshot) {
         //creo la lista vacia
         //console.log(snapshot.val());
@@ -300,15 +299,15 @@ export class Home {
         }
         console.log('despues ',noticiasLeidas);
         //guardo la lista en la bd
+        self.afDb.database.ref(`noticiaLeida/${event.id}`).set(noticiasLeidas);
         //this.afDb.object(`noticiaLeida/${event.id}`).set(noticiasLeidas);
         //this.afDb.database.ref(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
+        //llevo al detalle
+        //let modal = this.navCtrl.push(Eventdetails,  {'event': event});
       });
     })
-
-    //let modal = this.navCtrl.push(Eventdetails,  {'event': event});
     
-    //modal.onDidDismiss((data) => {console.log(data)});
-    //modal.present();
+    
   }
   guardar(noticia){
     //console.log(noticia);
