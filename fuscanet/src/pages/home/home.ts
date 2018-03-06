@@ -4,7 +4,7 @@ import firebase from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Profile } from '../../models/profile';
 import { Event } from '../../models/event';
-import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable  } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable } from 'angularfire2/database';
 import * as moment from 'moment';
 import { Eventdetails } from '../eventdetails/eventdetails';
 import { User } from '../user/user';
@@ -29,6 +29,7 @@ export class Home {
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
   profile = {} as Profile;
+  leidas: FirebaseListObservable<any>;
   showNoticia=true;
   btnEventoColor: string = '#f4f4f4';
   btnNoticiaColor: string = '#00C25F';
@@ -280,12 +281,20 @@ export class Home {
       console.log(event.id);
       console.log(auth.uid);
       //tengo q fijarme si existen datos
-      //creo la lista vacia
-      this.noticiasLeidas=[];
-      //agrego el usuario a la lista
-      this.noticiasLeidas.push(auth.uid);
-      //guardo la lista en la bd
-      this.afDb.object(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
+      this.afDb.list(`noticiaLeida/${event.id}`).subscribe(data => {
+        //creo la lista vacia
+        this.noticiasLeidas=[];
+        data.forEach(element => {
+          this.noticiasLeidas.push(element.$value);
+        });
+        console.log('antes ',this.noticiasLeidas);
+        //tengo q fijarme si ya esta en la lista
+        //agrego el usuario a la lista
+        this.noticiasLeidas.push(auth.uid);
+        console.log('despues ',this.noticiasLeidas);
+        //guardo la lista en la bd
+        //this.afDb.object(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
+      });
     })
 
     //let modal = this.navCtrl.push(Eventdetails,  {'event': event});
