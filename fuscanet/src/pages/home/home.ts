@@ -24,7 +24,7 @@ export class Home {
   eventsToShow: Event[];
   noticiaList: Event[];
   noticiasToShow: Event[];
-  noticiasLeidas: Event[];
+  noticiasLeidas: any;
   noticiaLike: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
@@ -276,15 +276,16 @@ export class Home {
     return dev; 
   }
   showDetails(event){
-    console.log(event.id);
-    console.log(this.user.uid);
-    this.noticiasLeidas=[];
-    this.noticiasLeidas.push(this.user.uid);
-    console.log(this.noticiasLeidas);
-
     this.afAuth.authState.take(1).subscribe(auth => {
+      console.log(event.id);
+      console.log(auth.uid);
+      //tengo q fijarme si existen datos
+      //creo la lista vacia
+      this.noticiasLeidas=[];
+      //agrego el usuario a la lista
+      this.noticiasLeidas.push(auth.uid);
+      //guardo la lista en la bd
       this.afDb.object(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
-      //this.noticias.subscribe(data => this.creoLocalNoticias(data));
     })
 
     //let modal = this.navCtrl.push(Eventdetails,  {'event': event});
