@@ -24,7 +24,6 @@ export class Home {
   eventsToShow: Event[];
   noticiaList: Event[];
   noticiasToShow: Event[];
-  noticiasLeidas: any;
   noticiaLike: Event[];
   events: FirebaseListObservable<Event[]>;
   noticias: FirebaseListObservable<Profile[]>;
@@ -278,22 +277,31 @@ export class Home {
   }
   showDetails(event){
     this.afAuth.authState.take(1).subscribe(auth => {
-      console.log(event.id);
-      console.log(auth.uid);
+      //console.log(event.id);
+      //console.log(auth.uid);
       //tengo q fijarme si existen datos
-      this.afDb.list(`noticiaLeida/${event.id}`).subscribe(data => {
+      let guardar = false;
+      this.afDb.database.ref(`noticiaLeida/${event.id}`).once('value').then(function(snapshot) {
         //creo la lista vacia
-        this.noticiasLeidas=[];
-        data.forEach(element => {
-          this.noticiasLeidas.push(element.$value);
-        });
-        console.log('antes ',this.noticiasLeidas);
+        //console.log(snapshot.val());
+        let noticiasLeidas=[];
+        noticiasLeidas = snapshot.val();
+        console.log('antes ',noticiasLeidas);
         //tengo q fijarme si ya esta en la lista
         //agrego el usuario a la lista
-        this.noticiasLeidas.push(auth.uid);
-        console.log('despues ',this.noticiasLeidas);
+        let agregar = true;
+        noticiasLeidas.forEach(element => {
+          if(element==auth.uid){
+            agregar = false;
+          }
+        });
+        if(agregar){
+          noticiasLeidas.push(auth.uid);
+        }
+        console.log('despues ',noticiasLeidas);
         //guardo la lista en la bd
-        //this.afDb.object(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
+        //this.afDb.object(`noticiaLeida/${event.id}`).set(noticiasLeidas);
+        //this.afDb.database.ref(`noticiaLeida/${event.id}`).set(this.noticiasLeidas);
       });
     })
 
