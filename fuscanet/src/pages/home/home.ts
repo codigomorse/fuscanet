@@ -132,7 +132,7 @@ export class Home {
     console.log('click en ',event);
     try{
     let asiste = this.asiste(event);
-    console.log('que pasa aca??? ',asiste);
+    //console.log('que pasa aca??? ',asiste);
     if(asiste){
       alert("ya asistiras a este evento");
     }else{
@@ -211,8 +211,8 @@ export class Home {
     })
   }
   noAsistir(event){
-    //console.log("no quiero ir mas");
-    //console.log(this.eventSource);
+    console.log("no quiero ir mas");
+    console.log(this.eventSource);
     //this.getEventPosition(event);
     //console.log(event);
     let pos = this.getEventPosition(event);
@@ -373,9 +373,9 @@ export class Home {
     //console.log('event sourcewtf ',this.eventSource);
     try{
       this.eventSource.forEach(element => {
-        console.log('compara '+element+' con '+event);
-        console.log('cada elemento ',element.id);
-        console.log(event.id);
+        //console.log('compara '+element+' con '+event);
+        //console.log('cada elemento ',element.id);
+        //console.log(event.id);
         if(element.id == event.id){
           asistira = true;
         }
