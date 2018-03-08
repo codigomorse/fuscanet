@@ -79,8 +79,8 @@ export class Home {
         //console.log(_data);
         try{
         _data.forEach(element => {
-          element.startTime = moment(new Date(element.startTime)).format('L');
-          element.endTime = new Date(element.endTime);
+          //element.startTime = moment(new Date(element.startTime)).format('L');
+          //element.endTime = new Date(element.endTime);
           //console.log(element);
         });
         //console.log(_data);
@@ -160,8 +160,8 @@ export class Home {
     events.forEach(event => {
       //console.log(event);
       //console.log("format time");
-      event.startTime= moment(event.startTime).format();
-      event.endTime= moment(event.endTime).format();
+      //event.startTime= moment(event.startTime).format();
+      //event.endTime= moment(event.endTime).format();
       //console.log(event);
     });}catch(e){}
   }
@@ -216,7 +216,7 @@ export class Home {
     //this.getEventPosition(event);
     //console.log(event);
     let pos = this.getEventPosition(event);
-    //console.log(pos);
+    console.log(pos);
     if(pos != -1){
       this.eventSource.splice(pos, 1);
     }
@@ -231,10 +231,8 @@ export class Home {
     let cont =0;
     let dev = -1;
     this.eventSource.forEach(element => {
-      element.startTime= moment(element.startTime).format();
-      element.endTime= moment(element.endTime).format();
       //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
-      if(element.title==event.title && element.startTime==event.startTime){
+      if(element.id == event.id){
         //console.log(cont);
         dev = cont;
       }
@@ -247,8 +245,8 @@ export class Home {
     let cont =0;
     let dev = -1;
     this.noticiaList.forEach(element => {
-      element.startTime= moment(noticia.startTime).format();
-      element.endTime= moment(noticia.endTime).format();
+      //element.startTime= moment(noticia.startTime).format();
+      //element.endTime= moment(noticia.endTime).format();
       //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
       if(element.title==noticia.title && element.startTime==noticia.startTime){
         //console.log(cont);
@@ -263,8 +261,8 @@ export class Home {
     let cont =0;
     let dev = -1;
     this.noticiaLike.forEach(element => {
-      element.startTime= moment(noticia.startTime).format();
-      element.endTime= moment(noticia.endTime).format();
+      //element.startTime= moment(noticia.startTime).format();
+      //element.endTime= moment(noticia.endTime).format();
       //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
       if(element.title==noticia.title && element.startTime==noticia.startTime){
         //console.log(cont);
@@ -331,8 +329,8 @@ export class Home {
     let asistira = false;
     //console.log(this.noticiaList);
     try{this.noticiaList.forEach(element => {
-      element.startTime= moment(noticia.startTime).format();
-      element.endTime= moment(noticia.endTime).format();
+      //element.startTime= moment(noticia.startTime).format();
+      //element.endTime= moment(noticia.endTime).format();
         //console.log('compara '+element.title+element.startTime +' con '+noticia.title+noticia.startTime);
         if(element.title==noticia.title && element.startTime==noticia.startTime){
           asistira = true;

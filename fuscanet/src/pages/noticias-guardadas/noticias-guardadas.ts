@@ -76,4 +76,42 @@ export class NoticiasGuardadas {
     });
     return dev; 
   }
+  showDetails(event){
+    var self = this;
+    this.afAuth.authState.take(1).subscribe(auth => {
+      //console.log(event.id);
+      //console.log(auth.uid);
+      this.afDb.database.ref(`noticiaLeida/${event.id}`).once('value').then(function(snapshot) {
+        //creo la lista vacia
+        //console.log(snapshot.val());
+        var noticiasLeidas=[];
+        noticiasLeidas = snapshot.val();
+        //console.log('antes ',noticiasLeidas);
+        //tengo q fijarme si ya esta en la lista
+        //agrego el usuario a la lista
+        let agregar = true;
+        if(noticiasLeidas){
+          noticiasLeidas.forEach(element => {
+            if(element==auth.uid){
+              agregar = false;
+            }
+          });
+        }else{
+          var noticiasLeidas=[];
+        }
+        if(agregar){
+          //console.log('agregate ',auth.uid );
+          //console.log('aca ', noticiasLeidas);
+          noticiasLeidas.push(auth.uid);
+        }
+        //console.log('despues ',noticiasLeidas);
+        //guardo la lista en la bd
+        self.afDb.database.ref(`noticiaLeida/${event.id}`).set(noticiasLeidas);
+        //llevo al detalle
+        let modal = self.navCtrl.push(Eventdetails,  {'event': event});
+      });
+    })
+    
+    
+  }
 }
