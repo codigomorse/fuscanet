@@ -126,19 +126,19 @@ export class Home {
     //console.log("click");
   }
   asistir(event){
-    console.log("click añadir");
+    //console.log("click añadir");
     //console.log('event souce ',this.eventSource);
     this.formatTime(this.eventSource);
     console.log('click en ',event);
     try{
     let asiste = this.asiste(event);
-    //console.log(asiste);
+    console.log('que pasa aca??? ',asiste);
     if(asiste){
       alert("ya asistiras a este evento");
     }else{
       this.eventSource.push(event);
       //alert("se agrega el evento")
-      console.log('event source despues',this.eventSource);
+      //console.log('event source despues',this.eventSource);
       this.afAuth.authState.take(1).subscribe(auth => {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
         this.events.subscribe(data => this.creoLocal(data));
@@ -285,7 +285,7 @@ export class Home {
         //console.log(snapshot.val());
         var noticiasLeidas=[];
         noticiasLeidas = snapshot.val();
-        console.log('antes ',noticiasLeidas);
+        //console.log('antes ',noticiasLeidas);
         //tengo q fijarme si ya esta en la lista
         //agrego el usuario a la lista
         let agregar = true;
@@ -299,11 +299,11 @@ export class Home {
           var noticiasLeidas=[];
         }
         if(agregar){
-          console.log('agregate ',auth.uid );
-          console.log('aca ', noticiasLeidas);
+          //console.log('agregate ',auth.uid );
+          //console.log('aca ', noticiasLeidas);
           noticiasLeidas.push(auth.uid);
         }
-        console.log('despues ',noticiasLeidas);
+        //console.log('despues ',noticiasLeidas);
         //guardo la lista en la bd
         self.afDb.database.ref(`noticiaLeida/${event.id}`).set(noticiasLeidas);
         //llevo al detalle
@@ -373,10 +373,10 @@ export class Home {
     //console.log('event sourcewtf ',this.eventSource);
     try{
       this.eventSource.forEach(element => {
-      element.startTime= moment(element.startTime).format();
-      element.endTime= moment(element.endTime).format();
-        //console.log('compara '+element.title+element.startTime +' con '+event.title+event.startTime);
-        if(element.title==event.title && element.startTime==event.startTime){
+        console.log('compara '+element+' con '+event);
+        console.log('cada elemento ',element.id);
+        console.log(event.id);
+        if(element.id == event.id){
           asistira = true;
         }
       });

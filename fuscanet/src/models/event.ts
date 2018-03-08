@@ -8,4 +8,5 @@ export interface Event{
     texto:string;
     voy:boolean;
     like:boolean;
+    id:String;
 }
