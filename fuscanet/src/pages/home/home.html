@@ -62,6 +62,8 @@
           <p class="resumen">
             {{noticia.texto}}
           </p>
+          <p>Mas info: </p>
+          <a href={{noticia.link}} target="_blank">{{noticia.link}}</a>
           <ion-row padding>
               <ion-col>
                   <button ion-button clear small color="primary" icon-start (click)="showDetails(noticia)">
