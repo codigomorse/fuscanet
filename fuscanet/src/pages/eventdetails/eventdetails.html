@@ -9,7 +9,7 @@
   
   
   <ion-content padding>
-      <ion-card>
+      <ion-card> 
           <img src={{evento.foto}}/>
           <ion-card-content>
             <ion-card-title class="titulo">
@@ -19,6 +19,8 @@
             <p class="resumen">
               {{evento.texto}}
             </p>
+            <p>Mas info: </p>
+          <a href={{evento.link}} (click)="goLink(evento)" target="_blank">{{evento.link}}</a>
           </ion-card-content>
         </ion-card>
   </ion-content>
