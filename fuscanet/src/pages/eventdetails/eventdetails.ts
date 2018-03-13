@@ -23,10 +23,39 @@ export class Eventdetails {
     this.viewCtrl.dismiss();
   }
   goLink(event){
-    console.log(event);
+    var self = this;
     this.afAuth.authState.take(1).subscribe(auth => {
-      //console.log(auth);  
-      this.afDb.database.ref(`noticiaLike/${event.id}`).push(auth.uid);
+      //console.log(event.id);
+      //console.log(auth.uid);
+      this.afDb.database.ref(`noticiaLike/${event.id}`).once('value').then(function(snapshot) {
+        //creo la lista vacia
+        //console.log(snapshot.val());
+        var noticiasLeidas=[];
+        noticiasLeidas = snapshot.val();
+        //console.log('antes ',noticiasLeidas);
+        //tengo q fijarme si ya esta en la lista
+        //agrego el usuario a la lista
+        let agregar = true;
+        if(noticiasLeidas){
+          noticiasLeidas.forEach(element => {
+            if(element==auth.uid){
+              //agregar = false;
+            }
+          });
+        }else{
+          var noticiasLeidas=[];
+        }
+        if(agregar){
+          //console.log('agregate ',auth.uid );
+          //console.log('aca ', noticiasLeidas);
+          noticiasLeidas.push(auth.uid);
+        }
+        //console.log('despues ',noticiasLeidas);
+        //guardo la lista en la bd
+        self.afDb.database.ref(`noticiaLike/${event.id}`).set(noticiasLeidas);
+        //llevo al detalle
+        let modal = self.navCtrl.push(Eventdetails,  {'event': event});
+      });
     });
   }
 }
