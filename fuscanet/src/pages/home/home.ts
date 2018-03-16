@@ -67,8 +67,8 @@ export class Home {
         try{
         _data.forEach(element => {
           //console.log(element);
-          element.startTime = new Date(element.startTime);
-          element.endTime = new Date(element.endTime);
+          //element.startTime = new Date(element.startTime);
+          //element.endTime = new Date(element.endTime);
         });
         //console.log(_data[0].startTime);
         this.eventSource = _data;  
@@ -145,7 +145,7 @@ export class Home {
       })
     }}catch(e){
       this.eventSource = [];
-      console.log('event source ',this.eventSource);
+      //console.log('event source ',this.eventSource);
       this.eventSource.push(event);
       //alert("se agrega el evento")
       //console.log(this.eventSource);
@@ -153,7 +153,7 @@ export class Home {
         this.afDb.object(`eventlist/${auth.uid}`).set(this.eventSource).then(() => alert("El evento se agrego correctamente"));
         this.events.subscribe(data => this.creoLocal(data));
       })
-    }
+    }finally{console.log('despues de agregar!!!',this.eventSource)}
   }
   formatTime(events){
     try{
@@ -169,15 +169,18 @@ export class Home {
     this.eventsToShow=[];
     events.forEach(element => {
       let asiste = this.asiste(element);
-      //console.log(asiste);
+      console.log(asiste);
       if(asiste){
         element.voy = false;
-      }else{element.voy = true}
+        console.log('cosas para guardar abajo  ',element.startTime);
+      }else{
+        element.voy = true;
+      }
         //console.log(this.eventsToShow);
-        //console.log(element);
         //element.startTime = moment(element.startTime).format('L');
         this.eventsToShow.push(element);
     });
+    console.log('Asi queda abajo despues de actualizar ',this.eventsToShow);
   }
   creoLocalNoticias(events){
     this.noticiasToShow=[];
