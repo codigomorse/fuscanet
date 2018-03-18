@@ -36,10 +36,10 @@ export class Home {
   btnEventoTextColor: string = '#00C25F';
   btnNoticiaTextColor: string = '#f4f4f4';
   constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public navCtrl: NavController, public navParams: NavParams) {
+    this.saveLastLogin();
   }
   ionViewDidLoad() {
     this.afAuth.authState.subscribe(data => {
-      this.saveLastLogin(data);
       //TRAE LOS DATOS DEL USUARIO
       this.user = data;
       //console.log(this.user);
@@ -383,10 +383,13 @@ export class Home {
     this.btnEventoTextColor="#f4f4f4";
     this.btnNoticiaTextColor="#00C25F";
   }
-  saveLastLogin(usuario){
+  saveLastLogin(){
     this.lastLogin=new Date().toISOString();
     console.log('guarda el ultimo login ',this.lastLogin);
-    this.afDb.object(`profile/${usuario.uid}`).update({lastLogin:this.lastLogin});
+    this.afAuth.authState.take(1).subscribe(auth => {
+      this.afDb.object(`profile/${auth.uid}`).update({lastLogin:this.lastLogin});
+    });
+    //
 
   }
 }
