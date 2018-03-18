@@ -14,4 +14,5 @@ export interface Profile{
     colegios: string;
     password: string;
     created: String;
+    lastLogin:String;
 }

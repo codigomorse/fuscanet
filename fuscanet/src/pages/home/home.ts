@@ -19,7 +19,8 @@ import { User } from '../user/user';
 export class Home {
   @ViewChild(Content) content: Content;
   profileData: FirebaseObjectObservable<Profile>;
-  user={};
+  user:any;
+  lastLogin:any;
   eventSource: Event[];
   eventsToShow: Event[];
   noticiaList: Event[];
@@ -36,15 +37,15 @@ export class Home {
   btnNoticiaTextColor: string = '#f4f4f4';
   constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public navCtrl: NavController, public navParams: NavParams) {
   }
-
   ionViewDidLoad() {
     this.afAuth.authState.subscribe(data => {
+      this.saveLastLogin(data);
       //TRAE LOS DATOS DEL USUARIO
       this.user = data;
       //console.log(this.user);
       //TRAE EL PROFILE DEL USUARIO  
       this.afDb.object(`/profile/${data.uid}`).subscribe(_data => {
-          this.profile = _data;
+          this.profile = _data;          
           if(!this.profile.nombre){
             let alert = this.alert.create({
               title: 'Aviso',
@@ -120,15 +121,8 @@ export class Home {
       }catch(e){console.log("event list vacio")}
       });    
      });
-     
-  }
-  goNoticia(){
-    //console.log("click");
   }
   asistir(event){
-    //console.log("click añadir");
-    //console.log('event souce ',this.eventSource);
-    this.formatTime(this.eventSource);
     console.log('click en ',event);
     try{
     let asiste = this.asiste(event);
@@ -154,16 +148,6 @@ export class Home {
         this.events.subscribe(data => this.creoLocal(data));
       })
     }finally{console.log('despues de agregar!!!',this.eventSource)}
-  }
-  formatTime(events){
-    try{
-    events.forEach(event => {
-      //console.log(event);
-      //console.log("format time");
-      //event.startTime= moment(event.startTime).format();
-      //event.endTime= moment(event.endTime).format();
-      //console.log(event);
-    });}catch(e){}
   }
   creoLocal(events){
     this.eventsToShow=[];
@@ -398,5 +382,11 @@ export class Home {
     this.btnNoticiaColor = "#f4f4f4";
     this.btnEventoTextColor="#f4f4f4";
     this.btnNoticiaTextColor="#00C25F";
+  }
+  saveLastLogin(usuario){
+    this.lastLogin=new Date().toISOString();
+    console.log('guarda el ultimo login ',this.lastLogin);
+    this.afDb.object(`profile/${usuario.uid}`).update({lastLogin:this.lastLogin});
+
   }
 }
