@@ -70,6 +70,7 @@ export class Register {
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
       console.log(this.profile);
+      console.log('control 1');
         this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => alert('Muchas gracias por completar su registro junto a yo medico.\nLuego de verificar su informacion recibira un mensaje para poder acceder a la aplicacion'));
       })
   } 

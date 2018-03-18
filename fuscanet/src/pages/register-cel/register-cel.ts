@@ -6,6 +6,7 @@ import { User } from "../../models/user";
 import { AngularFireDatabase, FirebaseObjectObservable  } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
+import { DateTime } from 'ionic-angular/components/datetime/datetime';
 
 @Component({
   selector: 'page-register-cel',
@@ -24,11 +25,10 @@ export class RegisterCel {
 
   ionViewDidLoad() {
     this.profile = this.navParams.get('profile');
-    console.log(this.profile);
   }
   createUser(): void {
     this.profile.perfil="nuevo";
-    console.log(this.profile);
+    this.profile.created=new Date().toISOString();
     this.afAuth.auth.createUserWithEmailAndPassword(this.profile.correo, 
         this.profile.password)
     .then( authData => {
@@ -58,7 +58,7 @@ export class RegisterCel {
   }
   saveProfile(){
     this.afAuth.authState.take(1).subscribe(auth => {
-      console.log(this.profile);
+      console.log('este se graba cuando se crea',this.profile);
         this.afDb.object(`profile/${auth.uid}`).set(this.profile).then(() => {
             let alert = this.alertCtrl.create({
               title: 'Aviso',
