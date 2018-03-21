@@ -384,12 +384,11 @@ export class Home {
     this.btnNoticiaTextColor="#00C25F";
   }
   saveLastLogin(){
-    this.lastLogin=new Date().toISOString();
-    console.log('guarda el ultimo login ',this.lastLogin);
     this.afAuth.authState.take(1).subscribe(auth => {
-      this.afDb.object(`profile/${auth.uid}`).update({lastLogin:this.lastLogin});
+      this.lastLogin=new Date().toISOString();
+      console.log('guarda el ultimo login ',this.lastLogin);
+      console.log('en este id: ',auth.uid);
+      //this.afDb.object(`profile/${auth.uid}`).update({lastLogin:this.lastLogin});
     });
-    //
-
   }
 }
