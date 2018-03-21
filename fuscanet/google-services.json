@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "761902724197",
+    "firebase_url": "https://redclinica-9e4da.firebaseio.com",
+    "project_id": "redclinica-9e4da",
+    "storage_bucket": "redclinica-9e4da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761902724197:android:c621d120a2a75687",
+        "android_client_info": {
+          "package_name": "io.ionic.soymedico"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761902724197-poas5eqqmmoncm7kjq941ucq9r2e3kj8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3J6P414kPhpAQyWV_HIdoVZGKvNNngEQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
