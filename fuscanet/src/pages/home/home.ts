@@ -8,6 +8,8 @@ import { AngularFireDatabase, FirebaseObjectObservable, FirebaseListObservable }
 import * as moment from 'moment';
 import { Eventdetails } from '../eventdetails/eventdetails';
 import { User } from '../user/user';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 
 
@@ -35,10 +37,21 @@ export class Home {
   btnNoticiaColor: string = '#00C25F';
   btnEventoTextColor: string = '#00C25F';
   btnNoticiaTextColor: string = '#f4f4f4';
-  constructor(private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public navCtrl: NavController, public navParams: NavParams) {
-    this.saveLastLogin();
+  constructor(private ga: GoogleAnalytics,private firebaseAnalytics: FirebaseAnalytics,private modalCtrl:ModalController,private afDb: AngularFireDatabase,private afAuth:AngularFireAuth,public alert: AlertController,public navCtrl: NavController, public navParams: NavParams) {
+    //this.saveLastLogin();
   }
   ionViewDidLoad() {
+    this.ga.startTrackerWithId('UA-51083775-3')
+   .then(() => {
+     console.log('Google analytics is ready now');
+        this.ga.trackView('test');
+     // Tracker is ready
+     // You can now track pages or set additional information such as AppVersion or UserId
+   })
+   .catch(e => console.log( e));
+    //this.firebaseAnalytics.setEnabled(true);
+    //this.firebaseAnalytics.logEvent('page_view', {page: "dashboard"});
+    //this.firebaseAnalytics.setCurrentScreen("Home");
     this.afAuth.authState.subscribe(data => {
       //TRAE LOS DATOS DEL USUARIO
       this.user = data;

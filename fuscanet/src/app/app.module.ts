@@ -28,6 +28,8 @@ import {NgCalendarModule} from 'ionic2-calendar';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { Camera } from '@ionic-native/camera';
 import { IonicStorageModule } from '@ionic/storage';
+import { FirebaseAnalytics } from '@ionic-native/firebase-analytics';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    GoogleAnalytics,
+    FirebaseAnalytics,
     Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
